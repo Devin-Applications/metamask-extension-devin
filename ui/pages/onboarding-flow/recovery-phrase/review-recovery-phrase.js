@@ -3,13 +3,13 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '../../../components/ui/box';
 import Button from '../../../components/ui/button';
-import Typography from '../../../components/ui/typography';
 import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard';
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import { ONBOARDING_CONFIRM_SRP_ROUTE } from '../../../helpers/constants/routes';
+import { Text } from '../../../components/component-library';
 import {
   TEXT_ALIGN,
-  TypographyVariant,
+  TextVariant,
   JustifyContent,
   FONT_WEIGHT,
   IconColor,
@@ -47,49 +47,49 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         textAlign={TEXT_ALIGN.CENTER}
         marginBottom={4}
       >
-        <Typography
-          variant={TypographyVariant.H2}
+        <Text
+          variant={TextVariant.headingLg}
           fontWeight={FONT_WEIGHT.BOLD}
           className="recovery-phrase__header"
         >
           {t('seedPhraseWriteDownHeader')}
-        </Typography>
+        </Text>
       </Box>
       <Box
         justifyContent={JustifyContent.center}
         textAlign={TEXT_ALIGN.CENTER}
         marginBottom={4}
       >
-        <Typography variant={TypographyVariant.H4}>
+        <Text variant={TextVariant.bodyLgMedium}>
           {t('seedPhraseWriteDownDetails')}
-        </Typography>
+        </Text>
       </Box>
       <Box
         textAlign={TEXT_ALIGN.LEFT}
         marginBottom={4}
         className="recovery-phrase__tips"
       >
-        <Typography
-          variant={TypographyVariant.H4}
+        <Text
+          variant={TextVariant.bodyLgMedium}
           fontWeight={FONT_WEIGHT.BOLD}
         >
           {t('tips')}:
-        </Typography>
+        </Text>
         <ul>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.bodyLgMedium}>
               {t('seedPhraseIntroSidebarBulletOne')}
-            </Typography>
+            </Text>
           </li>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.bodyLgMedium}>
               {t('seedPhraseIntroSidebarBulletThree')}
-            </Typography>
+            </Text>
           </li>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.bodyLgMedium}>
               {t('seedPhraseIntroSidebarBulletFour')}
-            </Typography>
+            </Text>
           </li>
         </ul>
       </Box>
