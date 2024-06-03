@@ -6,12 +6,12 @@ import Button from '../../../components/ui/button';
 import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard';
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import { ONBOARDING_CONFIRM_SRP_ROUTE } from '../../../helpers/constants/routes';
-import { Text } from '../../../components/component-library';
+import { Text, Icon, IconName } from '../../../components/component-library';
 import {
-  TEXT_ALIGN,
+  TextAlign,
   TextVariant,
   JustifyContent,
-  FONT_WEIGHT,
+  FontWeight,
   IconColor,
 } from '../../../helpers/constants/design-system';
 import {
@@ -23,7 +23,6 @@ import {
   MetaMetricsEventName,
 } from '../../../../shared/constants/metametrics';
 import { MetaMetricsContext } from '../../../contexts/metametrics';
-import { Icon, IconName } from '../../../components/component-library';
 import RecoveryPhraseChips from './recovery-phrase-chips';
 
 export default function RecoveryPhrase({ secretRecoveryPhrase }) {
@@ -44,12 +43,12 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
       <ThreeStepProgressBar stage={threeStepStages.RECOVERY_PHRASE_REVIEW} />
       <Box
         justifyContent={JustifyContent.center}
-        textAlign={TEXT_ALIGN.CENTER}
+        textAlign={TextAlign.Center}
         marginBottom={4}
       >
         <Text
           variant={TextVariant.headingLg}
-          fontWeight={FONT_WEIGHT.BOLD}
+          fontWeight={FontWeight.Bold}
           className="recovery-phrase__header"
         >
           {t('seedPhraseWriteDownHeader')}
@@ -57,7 +56,7 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
       </Box>
       <Box
         justifyContent={JustifyContent.center}
-        textAlign={TEXT_ALIGN.CENTER}
+        textAlign={TextAlign.Center}
         marginBottom={4}
       >
         <Text variant={TextVariant.bodyLgMedium}>
@@ -65,13 +64,13 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         </Text>
       </Box>
       <Box
-        textAlign={TEXT_ALIGN.LEFT}
+        textAlign={TextAlign.Left}
         marginBottom={4}
         className="recovery-phrase__tips"
       >
         <Text
           variant={TextVariant.bodyLgMedium}
-          fontWeight={FONT_WEIGHT.BOLD}
+          fontWeight={FontWeight.Bold}
         >
           {t('tips')}:
         </Text>
