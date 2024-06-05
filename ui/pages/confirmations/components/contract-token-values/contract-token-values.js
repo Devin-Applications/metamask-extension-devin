@@ -36,7 +36,6 @@ export default function ContractTokenValues({
       <Identicon address={address} diameter={24} />
       <Text
         variant={TextVariant.headingLg}
-        as="h2"
         color={TextColor.textAlternative}
         marginTop={0}
         marginBottom={0}
