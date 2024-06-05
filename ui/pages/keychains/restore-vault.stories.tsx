@@ -45,7 +45,7 @@ const mockTFunction = (key, ...args) => {
       translation = translation.replace(`$${index + 1}`, JSON.stringify(arg));
     }
   });
-  console.log('Final translation:', translation); // Log final translation
+  console.log('Final translation before return:', translation); // Log final translation before return
   return translation; // Return plain string instead of React element
 };
 
