@@ -90,7 +90,7 @@ export default function SkipSRPBackup({ handleClose }) {
           className="skip-srp-backup-popover__icon"
           color={IconColor.errorDefault}
         />
-        <Text variant={TextVariant.headingMdBold}>
+        <Text variant={TextVariant.headingMd}>
           {t('skipAccountSecurity')}
         </Text>
         <Box justifyContent={JustifyContent.center} margin={3}>
