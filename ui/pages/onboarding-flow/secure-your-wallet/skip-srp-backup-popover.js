@@ -6,7 +6,12 @@ import { useI18nContext } from '../../../hooks/useI18nContext';
 import Button from '../../../components/ui/button';
 import Popover from '../../../components/ui/popover';
 import Box from '../../../components/ui/box';
-import { Text } from '../../../components/component-library';
+import {
+  Text,
+  Icon,
+  IconName,
+  IconSize,
+} from '../../../components/component-library';
 import {
   AlignItems,
   IconColor,
@@ -22,11 +27,6 @@ import {
   MetaMetricsEventName,
 } from '../../../../shared/constants/metametrics';
 import { MetaMetricsContext } from '../../../contexts/metametrics';
-import {
-  Icon,
-  IconName,
-  IconSize,
-} from '../../../components/component-library';
 
 export default function SkipSRPBackup({ handleClose }) {
   const [checked, setChecked] = useState(false);
@@ -90,9 +90,7 @@ export default function SkipSRPBackup({ handleClose }) {
           className="skip-srp-backup-popover__icon"
           color={IconColor.errorDefault}
         />
-        <Text variant={TextVariant.headingMd}>
-          {t('skipAccountSecurity')}
-        </Text>
+        <Text variant={TextVariant.headingMd}>{t('skipAccountSecurity')}</Text>
         <Box justifyContent={JustifyContent.center} margin={3}>
           <label className="skip-srp-backup-popover__label">
             <Checkbox
@@ -104,6 +102,7 @@ export default function SkipSRPBackup({ handleClose }) {
             <Text
               className="skip-srp-backup-popover__details"
               variant={TextVariant.bodySm}
+              as="h6"
             >
               {t('skipAccountSecurityDetails')}
             </Text>
