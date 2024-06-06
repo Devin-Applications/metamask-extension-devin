@@ -7,9 +7,9 @@ Added Storybook stories for the IconButton component to showcase its different s
 3. Verify that the stories for Default, Disabled, and With Long Label are rendered correctly.
 
 ## **Screenshots/Recordings**
-![Default Story](https://api.devin.ai/attachments/01e2b800-4fdf-40a4-a340-28bdb8ab869a.png)
-![Disabled Story](https://api.devin.ai/attachments/42b486da-9515-446b-b890-c9b8c99d1aa8.png)
-![With Long Label Story](https://api.devin.ai/attachments/e65365ee-913f-4717-9c4c-56f03f6e31ce.png)
+![Default Story](https://github.com/Devin-Applications/metamask-extension-devin/releases/download/screenshots/8330d447-c3ab-4b91-9d7f-870f9dcf9478.png)
+![Disabled Story](https://github.com/Devin-Applications/metamask-extension-devin/releases/download/screenshots/df1b0738-daf3-4722-ac02-5863cb122981.png)
+![With Long Label Story](https://github.com/Devin-Applications/metamask-extension-devin/releases/download/screenshots/01e2b800-4fdf-40a4-a340-28bdb8ab869a.png)
 
 ## **Pre-merge author checklist**
 - [X] I’ve followed [MetaMask Coding Standards](https://github.com/MetaMask/metamask-extension/blob/develop/.github/guidelines/CODING_GUIDELINES.md).
