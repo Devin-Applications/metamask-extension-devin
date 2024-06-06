@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import IconButton from './icon-button';
-import { TextVariant } from '../../../helpers/constants/design-system';
 import Tooltip from '../tooltip/tooltip';
 
 // Define the default export for the story
