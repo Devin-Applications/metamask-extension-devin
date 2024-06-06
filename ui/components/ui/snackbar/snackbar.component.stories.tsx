@@ -34,7 +34,7 @@ LongTextContent.args = {
 export const HTMLContent = Template.bind({});
 HTMLContent.args = {
   className: '',
-  content: '<strong>This is a snackbar with HTML content</strong>',
+  content: <strong>This is a snackbar with HTML content</strong>,
 };
 
 export const WarningSnackbar = Template.bind({});
