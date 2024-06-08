@@ -26,13 +26,31 @@ export const DefaultStory: Story = {};
 DefaultStory.storyName = 'Default';
 
 export const WithLeaveImportSeedScreenState: Story = {
-  args: {},
+  args: {
+    history: {
+      push: (path: string) => {
+        console.log('Navigated to:', path);
+      },
+    },
+  },
 };
 
 export const WithCreateNewVaultAndRestore: Story = {
-  args: {},
+  args: {
+    history: {
+      push: (path: string) => {
+        console.log('Navigated to:', path);
+      },
+    },
+  },
 };
 
 export const WithLoadingState: Story = {
-  args: {},
+  args: {
+    history: {
+      push: (path: string) => {
+        console.log('Navigated to:', path);
+      },
+    },
+  },
 };
