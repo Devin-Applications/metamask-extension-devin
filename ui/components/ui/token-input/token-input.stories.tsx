@@ -5,11 +5,6 @@ import TokenInput from './token-input.component';
 const meta: Meta<typeof TokenInput> = {
   title: 'Components/UI/TokenInput',
   component: TokenInput,
-  parameters: {
-    docs: {
-      // Removed reference to README.mdx
-    },
-  },
   argTypes: {
     dataTestId: {
       control: 'text',
