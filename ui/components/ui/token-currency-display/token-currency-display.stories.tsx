@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import TokenCurrencyDisplay from './token-currency-display.component';
-import CurrencyDisplay from '../currency-display';
-import { useTokenDisplayValue } from '../../../hooks/useTokenDisplayValue';
 
 const meta: Meta<typeof TokenCurrencyDisplay> = {
   title: 'Components/TokenCurrencyDisplay',
