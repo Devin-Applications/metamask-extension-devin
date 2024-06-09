@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import Snackbar from './snackbar.component';
-import './snackbar.stories.css'; // Import the CSS file for custom styles
 
 export default {
   title: 'Components/Snackbar',
