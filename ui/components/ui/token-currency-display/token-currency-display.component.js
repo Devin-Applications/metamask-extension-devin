@@ -24,6 +24,9 @@ export default function TokenCurrencyDisplay({
 TokenCurrencyDisplay.propTypes = {
   className: PropTypes.string,
   transactionData: PropTypes.string,
-  token: PropTypes.object,
+  token: PropTypes.shape({
+    symbol: PropTypes.string.isRequired,
+    decimals: PropTypes.number.isRequired,
+  }).isRequired,
   prefix: PropTypes.string,
 };
