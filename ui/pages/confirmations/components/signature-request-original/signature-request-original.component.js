@@ -226,7 +226,7 @@ export default class SignatureRequestOriginal extends Component {
         </Text>
         <Text
           className="request-signature__content__subtitle"
-          variant={TextVariant.bodyXs}
+          variant={TextVariant.bodySm}
           color={TextColor.textAlternative}
           textAlign={TextAlign.Center}
           margin={12}
