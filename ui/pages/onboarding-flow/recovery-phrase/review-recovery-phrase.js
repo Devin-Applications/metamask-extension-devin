@@ -3,15 +3,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Box from '../../../components/ui/box';
 import Button from '../../../components/ui/button';
-import Typography from '../../../components/ui/typography';
 import { useCopyToClipboard } from '../../../hooks/useCopyToClipboard';
 import { useI18nContext } from '../../../hooks/useI18nContext';
 import { ONBOARDING_CONFIRM_SRP_ROUTE } from '../../../helpers/constants/routes';
+import { Text, Icon, IconName } from '../../../components/component-library';
 import {
-  TEXT_ALIGN,
-  TypographyVariant,
+  TextVariant,
+  TextAlign,
   JustifyContent,
-  FONT_WEIGHT,
   IconColor,
 } from '../../../helpers/constants/design-system';
 import {
@@ -23,7 +22,6 @@ import {
   MetaMetricsEventName,
 } from '../../../../shared/constants/metametrics';
 import { MetaMetricsContext } from '../../../contexts/metametrics';
-import { Icon, IconName } from '../../../components/component-library';
 import RecoveryPhraseChips from './recovery-phrase-chips';
 
 export default function RecoveryPhrase({ secretRecoveryPhrase }) {
@@ -44,52 +42,46 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
       <ThreeStepProgressBar stage={threeStepStages.RECOVERY_PHRASE_REVIEW} />
       <Box
         justifyContent={JustifyContent.center}
-        textAlign={TEXT_ALIGN.CENTER}
+        textAlign={TextAlign.Center}
         marginBottom={4}
       >
-        <Typography
-          variant={TypographyVariant.H2}
-          fontWeight={FONT_WEIGHT.BOLD}
+        <Text
+          variant={TextVariant.headingLg}
           className="recovery-phrase__header"
         >
           {t('seedPhraseWriteDownHeader')}
-        </Typography>
+        </Text>
       </Box>
       <Box
         justifyContent={JustifyContent.center}
-        textAlign={TEXT_ALIGN.CENTER}
+        textAlign={TextAlign.Center}
         marginBottom={4}
       >
-        <Typography variant={TypographyVariant.H4}>
+        <Text variant={TextVariant.headingSm}>
           {t('seedPhraseWriteDownDetails')}
-        </Typography>
+        </Text>
       </Box>
       <Box
-        textAlign={TEXT_ALIGN.LEFT}
+        textAlign={TextAlign.Left}
         marginBottom={4}
         className="recovery-phrase__tips"
       >
-        <Typography
-          variant={TypographyVariant.H4}
-          fontWeight={FONT_WEIGHT.BOLD}
-        >
-          {t('tips')}:
-        </Typography>
+        <Text variant={TextVariant.headingSm}>{t('tips')}:</Text>
         <ul>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletOne')}
-            </Typography>
+            </Text>
           </li>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletThree')}
-            </Typography>
+            </Text>
           </li>
           <li>
-            <Typography variant={TypographyVariant.H4}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletFour')}
-            </Typography>
+            </Text>
           </li>
         </ul>
       </Box>
