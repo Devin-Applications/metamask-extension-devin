@@ -94,7 +94,7 @@ describe('MetaMask Responsive UI', function () {
 
         // Import Secret Recovery Phrase
         const restoreSeedLink = await driver.findClickableElement(
-          '.unlock-page__link',
+          '[data-testid="unlock-page-link"]',
         );
         assert.equal(await restoreSeedLink.getText(), 'Forgot password?');
         await restoreSeedLink.click();
