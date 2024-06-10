@@ -40,12 +40,11 @@ export default class TokenInput extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { value: hexValue } = props;
-    const decimalValue = hexValue ? this.getValue(props) : 0;
+    const decimalValue = props.value ? this.getValue(props) : 0;
 
     this.state = {
       decimalValue,
-      hexValue,
+      hexValue: props.value,
     };
   }
 
