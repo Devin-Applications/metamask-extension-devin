@@ -11,7 +11,6 @@ import {
   TextAlign,
   TextVariant,
   JustifyContent,
-  FontWeight,
   IconColor,
 } from '../../../helpers/constants/design-system';
 import {
@@ -48,7 +47,6 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
       >
         <Text
           variant={TextVariant.headingLg}
-          fontWeight={FontWeight.Bold}
           className="recovery-phrase__header"
         >
           {t('seedPhraseWriteDownHeader')}
@@ -59,7 +57,7 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         textAlign={TextAlign.Center}
         marginBottom={4}
       >
-        <Text variant={TextVariant.bodyLgMedium}>
+        <Text variant={TextVariant.headingSm}>
           {t('seedPhraseWriteDownDetails')}
         </Text>
       </Box>
@@ -68,25 +66,20 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         marginBottom={4}
         className="recovery-phrase__tips"
       >
-        <Text
-          variant={TextVariant.bodyLgMedium}
-          fontWeight={FontWeight.Bold}
-        >
-          {t('tips')}:
-        </Text>
+        <Text variant={TextVariant.headingSm}>{t('tips')}:</Text>
         <ul>
           <li>
-            <Text variant={TextVariant.bodyLgMedium}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletOne')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.bodyLgMedium}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletThree')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.bodyLgMedium}>
+            <Text variant={TextVariant.headingSm}>
               {t('seedPhraseIntroSidebarBulletFour')}
             </Text>
           </li>
