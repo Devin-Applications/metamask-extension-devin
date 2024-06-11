@@ -122,7 +122,7 @@ class SelectedAccount extends Component {
             </Text>
             <Text
               data-testid="selected-account-address"
-              variant={TextVariant.bodySm}
+              variant={TextVariant.bodyXs}
               color={TextColor.textAlternative}
               display={Display.Flex}
               alignItems={AlignItems.Center}
