@@ -12,7 +12,15 @@ import { ENVIRONMENT_TYPE_POPUP } from '../../../../shared/constants/app';
 import CustodyLabels from '../../institutional/custody-labels/custody-labels';
 ///: END:ONLY_INCLUDE_IF
 import { Icon, IconName, IconSize, Text } from '../../component-library';
-import { IconColor, TextVariant, TextColor, TextAlign, Display, AlignItems, BlockSize } from '../../../helpers/constants/design-system';
+import {
+  IconColor,
+  TextVariant,
+  TextColor,
+  TextAlign,
+  Display,
+  AlignItems,
+  BlockSize,
+} from '../../../helpers/constants/design-system';
 import { COPY_OPTIONS } from '../../../../shared/constants/copy';
 
 class SelectedAccount extends Component {
@@ -116,7 +124,7 @@ class SelectedAccount extends Component {
               color={TextColor.textDefault}
               ellipsis
               textAlign={TextAlign.Center}
-              marginBottom={4}
+              marginBottom={1}
             >
               {selectedAccount.metadata.name}
             </Text>
