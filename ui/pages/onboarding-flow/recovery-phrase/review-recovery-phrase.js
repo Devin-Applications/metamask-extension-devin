@@ -71,17 +71,26 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         <Text variant={TextVariant.headingSm}>{t('tips')}:</Text>
         <ul>
           <li>
-            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
+            <Text
+              variant={TextVariant.headingSm}
+              fontWeight={FontWeight.Normal}
+            >
               {t('seedPhraseIntroSidebarBulletOne')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
+            <Text
+              variant={TextVariant.headingSm}
+              fontWeight={FontWeight.Normal}
+            >
               {t('seedPhraseIntroSidebarBulletThree')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
+            <Text
+              variant={TextVariant.headingSm}
+              fontWeight={FontWeight.Normal}
+            >
               {t('seedPhraseIntroSidebarBulletFour')}
             </Text>
           </li>
