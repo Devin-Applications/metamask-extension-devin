@@ -12,6 +12,7 @@ import {
   TextAlign,
   JustifyContent,
   IconColor,
+  FontWeight,
 } from '../../../helpers/constants/design-system';
 import {
   ThreeStepProgressBar,
@@ -47,6 +48,7 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
       >
         <Text
           variant={TextVariant.headingLg}
+          fontWeight={FontWeight.Bold}
           className="recovery-phrase__header"
         >
           {t('seedPhraseWriteDownHeader')}
@@ -57,7 +59,7 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         textAlign={TextAlign.Center}
         marginBottom={4}
       >
-        <Text variant={TextVariant.headingSm}>
+        <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
           {t('seedPhraseWriteDownDetails')}
         </Text>
       </Box>
@@ -69,17 +71,17 @@ export default function RecoveryPhrase({ secretRecoveryPhrase }) {
         <Text variant={TextVariant.headingSm}>{t('tips')}:</Text>
         <ul>
           <li>
-            <Text variant={TextVariant.headingSm}>
+            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
               {t('seedPhraseIntroSidebarBulletOne')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.headingSm}>
+            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
               {t('seedPhraseIntroSidebarBulletThree')}
             </Text>
           </li>
           <li>
-            <Text variant={TextVariant.headingSm}>
+            <Text variant={TextVariant.headingSm} fontWeight={FontWeight.Normal}>
               {t('seedPhraseIntroSidebarBulletFour')}
             </Text>
           </li>
