@@ -43,8 +43,6 @@ export default class TransactionConfirmed extends PureComponent {
             data-testid="transaction-confirmed-title"
             variant={TextVariant.headingMd}
             fontWeight={500}
-            paddingTop={4}
-            paddingBottom={4}
             textAlign={TextAlign.Center}
           >
             {`${t('confirmed')}!`}
@@ -52,8 +50,6 @@ export default class TransactionConfirmed extends PureComponent {
           <Text
             data-testid="transaction-confirmed-description"
             variant={TextVariant.bodySm}
-            paddingTop={4}
-            paddingBottom={4}
             textAlign={TextAlign.Center}
           >
             {t('initialTransactionConfirmed')}
