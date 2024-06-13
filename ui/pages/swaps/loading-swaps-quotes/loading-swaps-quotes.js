@@ -133,7 +133,7 @@ export default function LoadingSwapsQuotes({
             color={TextColor.textAlternative}
             marginTop={1}
             display={Display.Flex}
-            justifyContent={JustifyContent.Center}
+            justifyContent={JustifyContent.center}
             width={BlockSize.Full}
             marginBottom={1}
           >
@@ -147,7 +147,7 @@ export default function LoadingSwapsQuotes({
             data-testid="loading-swaps-quotes-quote-name-check"
             color={TextColor.textDefault}
             display={Display.Flex}
-            justifyContent={JustifyContent.Center}
+            justifyContent={JustifyContent.center}
             width={BlockSize.Full}
             textTransform={TextTransform.Capitalize}
           >
