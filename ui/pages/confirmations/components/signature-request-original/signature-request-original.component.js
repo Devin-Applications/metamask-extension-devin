@@ -220,13 +220,13 @@ export default class SignatureRequestOriginal extends Component {
         </div>
         <Text
           className="request-signature__content__title"
-          variant={TextVariant.headingMdBold}
+          variant={TextVariant.headingMd}
         >
           {this.context.t('sigRequest')}
         </Text>
         <Text
           className="request-signature__content__subtitle"
-          variant={TextVariant.bodySm}
+          variant={TextVariant.bodyXs}
           color={TextColor.textAlternative}
           textAlign={TextAlign.Center}
           margin={12}
