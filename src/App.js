@@ -14,6 +14,7 @@ function App() {
         const parsedIcons = parseIcons(csvData);
         setIcons(parsedIcons);
         console.log('Parsed Icons:', parsedIcons); // Add console log to verify parsed icons
+        console.log('Icons state after setting:', parsedIcons); // Add console log to verify state after setting
       })
       .catch(error => console.error('Error fetching CSV:', error));
   }, []);
