@@ -11,8 +11,8 @@ const parseIcons = (csvData) => {
   const icons = parsedData.data.map((row, index) => {
     console.log(`Row ${index}:`, row);
     return {
-      metamaskIcon: row.MetaMaskIcon ? row.MetaMaskIcon.trim() : '',
-      fontAwesomeIcon: row.FontAwesomeIcon ? row.FontAwesomeIcon.trim() : '',
+      metamaskIcon: row['MataMask Icon Name'] ? row['MataMask Icon Name'].trim() : '',
+      fontAwesomeIcon: row['FontAwesome Icon Name'] ? row['FontAwesome Icon Name'].trim() : '',
     };
   });
 
