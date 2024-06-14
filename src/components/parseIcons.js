@@ -22,6 +22,8 @@ const parseIcons = (csvData) => {
     };
   });
 
+  console.log('Final Parsed Icons:', icons); // Add detailed logging for final parsed icons
+
   return icons;
 };
 
