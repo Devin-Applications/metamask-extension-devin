@@ -6,6 +6,7 @@ const parseIcons = (csvData) => {
     skipEmptyLines: true,
   });
 
+  console.log('Raw CSV Data:', csvData); // Log the raw CSV data
   console.log('Parsed CSV Data:', parsedData.data);
 
   const icons = parsedData.data.map((row, index) => {
