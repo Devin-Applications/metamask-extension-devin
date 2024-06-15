@@ -1,157 +1,43 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Box, SimpleGrid, Text, Select, Button } from '@chakra-ui/react';
-import * as FaIcons from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { Box, Text } from '@chakra-ui/react';
 
 const IconGrid = () => {
   const [iconMappings, setIconMappings] = useState([]);
-  const [selectedIcons, setSelectedIcons] = useState({});
-  const [loading, setLoading] = useState(true); // Add loading state
-  const prevIconMappingsRef = useRef();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stagingUrl = 'https://metamask-icons-app-i5s69gci.staging.devinapps.com/api/mappings'; // Updated staging URL
-    console.log('Fetching data from:', stagingUrl); // Log the URL being fetched
-    fetch(stagingUrl)
-      .then(response => {
-        console.log('Received response:', response); // Log the response object
-        return response.json();
-      })
+    const localUrl = 'http://localhost:3001/api/mappings';
+    fetch(localUrl)
+      .then(response => response.json())
       .then(data => {
-        console.log('Fetched data:', data); // Log fetched data for debugging
-        if (data.data && data.data.length > 0) {
-          console.log('First item in fetched data:', data.data[0]); // Log structure of first item
-        }
-        // Log data before filtering
-        console.log('Data before filtering:', data.data);
-        // Enhanced filtering logic to ensure no null values are included
-        const filteredData = data.data.filter(icon => {
-          return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
-        });
-        console.log('Filtered data:', filteredData); // Log filtered data for debugging
-        if (filteredData.length > 0 && JSON.stringify(filteredData) !== JSON.stringify(prevIconMappingsRef.current)) {
-          console.log('Setting iconMappings state with filtered data:', filteredData); // Log before setting state
-          setIconMappings(filteredData);
-          prevIconMappingsRef.current = filteredData;
-          console.log('iconMappings state immediately after set:', filteredData); // Log state immediately after set
-        }
+        const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+        setIconMappings(filteredData);
         setLoading(false);
-        console.log('iconMappings state after fetch:', filteredData);
       })
       .catch(error => {
         console.error('Error fetching icon mappings:', error);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false);
       });
-  }, []); // Remove iconMappings as a dependency to prevent unnecessary re-renders
-
-  const getIconComponent = (iconName) => {
-    console.log('Requested icon name:', iconName); // Log requested icon name for debugging
-    if (!iconName) {
-      console.warn('Null or undefined iconName encountered:', iconName); // Log warning for null or undefined iconName
-      return null; // Return null if iconName is null or undefined
-    }
-    const iconComponent = FaIcons[iconName];
-    console.log('Returned icon component:', iconComponent); // Log returned icon component for debugging
-    return iconComponent || null; // Return null if iconComponent is not found
-  };
-
-  const handleSelectChange = (id, value) => {
-    setSelectedIcons(prevState => ({
-      ...prevState,
-      [id]: value
-    }));
-  };
-
-  const handleSave = (id) => {
-    const selectedIcon = selectedIcons[id];
-    if (selectedIcon) {
-      console.log('Selected icon for save:', selectedIcon); // Log selected icon for debugging
-      console.log('iconMappings state before save:', iconMappings); // Log state before save
-      fetch(`https://metamask-icons-app-i5s69gci.staging.devinapps.com/api/mappings/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ fontawesome_icon: selectedIcon })
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Update response:', data);
-          setIconMappings(prevState => {
-            const updatedState = prevState.map(icon =>
-              icon.id === id ? { ...icon, fontawesome_icon: selectedIcon } : icon
-            );
-            console.log('Updated state:', updatedState); // Log updated state for debugging
-            return updatedState;
-          });
-          console.log('iconMappings state after save:', iconMappings); // Log state after save
-        })
-        .catch(error => console.error('Error updating icon mapping:', error));
-    } else {
-      console.error('Selected icon is null, cannot save'); // Log error for null selectedIcon
-    }
-  };
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Display loading message while data is being fetched
+    return <div>Loading...</div>;
   }
-
-  // Render the icon grid with safeguards for null values
-  console.log('iconMappings state before rendering:', iconMappings); // Log state before rendering
-  const finalIconMappings = iconMappings; // Use the state directly without additional filtering
-  console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
     <Box p={4}>
-      <SimpleGrid columns={[2, null, 4]} spacing="40px">
-        { /* Add a check before rendering each icon to skip rendering if the iconName is null */ }
-        {finalIconMappings.map((icon, index) => {
-          try {
-            console.log('Processing icon:', icon); // Log each icon being processed
-            console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
-            console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
-            if (!icon.fontawesome_icon || !icon.metamask_icon || icon.fontawesome_icon.trim() === '' || icon.metamask_icon.trim() === '') {
-              console.warn('Skipping icon with null or empty values:', icon); // Log warning for null or empty values
-              return null; // Skip rendering if iconName is null or empty
-            }
-            const IconComponent = getIconComponent(icon.fontawesome_icon);
-            if (!IconComponent) {
-              console.warn('Skipping icon with invalid component:', icon); // Log warning for invalid component
-              return null; // Skip rendering if IconComponent is null
-            }
-            console.log('Rendering icon component:', IconComponent); // Log before rendering icon component
-            return (
-              <Box key={index} textAlign="center">
-                {IconComponent ? React.createElement(IconComponent) : null}
-                <Text mt={2}>{icon.metamask_icon}</Text>
-                <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
-                <Select
-                  placeholder="Select icon"
-                  onChange={(e) => handleSelectChange(icon.id, e.target.value)}
-                  value={selectedIcons[icon.id] || icon.fontawesome_icon}
-                >
-                  {Object.keys(FaIcons).map((iconName, idx) => (
-                    <option key={idx} value={iconName}>
-                      {iconName}
-                    </option>
-                  ))}
-                </Select>
-                <Button mt={2} onClick={() => handleSave(icon.id)}>
-                  Save
-                </Button>
-              </Box>
-            );
-          } catch (error) {
-            console.error('Error rendering icon:', error); // Log any rendering errors
-            console.log('Error details:', error.message); // Log error message
-            console.log('Error stack:', error.stack); // Log error stack trace
-            return (
-              <Box key={index} textAlign="center">
-                <Text color="red">Error rendering icon</Text>
-              </Box>
-            ); // Display error message in UI
-          }
-        })}
-      </SimpleGrid>
+      <Text>Icon mappings loaded successfully.</Text>
+      {iconMappings.map((icon, index) => {
+        if (!icon.metamask_icon || !icon.fontawesome_icon) {
+          return null;
+        }
+        return (
+          <Box key={index}>
+            <Text>{icon.metamask_icon}</Text>
+            <Text>{icon.fontawesome_icon}</Text>
+          </Box>
+        );
+      })}
     </Box>
   );
 };
