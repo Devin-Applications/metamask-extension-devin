@@ -30,77 +30,87 @@ const IconGrid = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const localUrl = 'http://localhost:3001/api/mappings';
-    fetch(localUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+    // Using static data for testing
+    const staticData = {
+      "data": [
+        {
+          "id": 1,
+          "metamask_icon": "AddSquare",
+          "fontawesome_icon": "square-plus"
+        },
+        {
+          "id": 2,
+          "metamask_icon": "Add",
+          "fontawesome_icon": "plus"
+        },
+        {
+          "id": 3,
+          "metamask_icon": "Arrow2Down",
+          "fontawesome_icon": "arrow-down"
+        },
+        {
+          "id": 4,
+          "metamask_icon": "Arrow2Left",
+          "fontawesome_icon": "arrow-left"
+        },
+        {
+          "id": 5,
+          "metamask_icon": "Arrow2Right",
+          "fontawesome_icon": "arrow-right"
+        },
+        {
+          "id": 6,
+          "metamask_icon": "Arrow2Up",
+          "fontawesome_icon": "arrow-up"
+        },
+        {
+          "id": 7,
+          "metamask_icon": "Arrow2UpRight",
+          "fontawesome_icon": "arrow-up-right"
+        },
+        {
+          "id": 8,
+          "metamask_icon": "ArrowDoubleLeft",
+          "fontawesome_icon": "chevrons-left"
+        },
+        {
+          "id": 9,
+          "metamask_icon": "ArrowDoubleRight",
+          "fontawesome_icon": "chevrons-right"
+        },
+        {
+          "id": 10,
+          "metamask_icon": "ArrowDown",
+          "fontawesome_icon": "chevron-down"
         }
-        console.log('Raw response:', response); // Added logging to inspect raw response
-        return response.json();
-      })
-      .then(data => {
-        console.log('Fetched raw data:', data); // Added logging to inspect raw fetched data
-        if (data && data.data) {
-          console.log('Entire fetched data array:', data.data); // Added logging to inspect entire fetched data array
-          const filteredData = data.data.filter(icon => {
-            console.log('Filtering icon:', icon); // Added logging to inspect each icon during filtering
-            return icon.fontawesome_icon && icon.metamask_icon;
-          });
-          console.log('Filtered data:', filteredData); // Added logging to inspect filtered data
-          setIconMappings(filteredData);
-          console.log('Icon mappings state after setting:', filteredData); // Added logging to inspect state after setting
-        } else {
-          console.error('Fetched data is not in expected format:', data);
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching icon mappings:', error);
-        setIconMappings([]); // Set a fallback state in case of error
-        setLoading(false);
-      });
+      ]
+    };
+
+    setIconMappings(staticData.data);
+    setLoading(false);
   }, []);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  const getIconComponent = (iconName, library) => {
-    if (!iconName) return <FaIcons.FaQuestion />;
-    const IconComponent = library[iconName];
-    return IconComponent ? <IconComponent /> : <FaIcons.FaQuestion />;
-  };
-
-  const getMetaMaskIcon = (iconName) => {
-    if (!iconName) return <img src="fallback-icon.svg" alt="Fallback Icon" />;
-    const iconPath = `http://localhost:3001/images/${iconName}.svg`; // Updated URL path to the correct location of the SVG files
-    return <img src={iconPath} alt={iconName} />;
-  };
+  if (iconMappings.length === 0) {
+    return <div>No valid icon mappings available.</div>;
+  }
 
   return (
     <ErrorBoundary>
       <Box p={4}>
-        <Text>Icon mappings loaded successfully.</Text>
-        {console.log('Icon mappings state before rendering:', iconMappings)}
-        {iconMappings.map((icon, index) => {
-          console.log('Rendering icon:', icon);
-          if (!icon.metamask_icon || !icon.fontawesome_icon) {
-            console.log('Skipping icon due to null values:', icon);
-            return null;
-          }
-          return (
-            <Box key={index} display="flex" alignItems="center" mb={4}>
-              <Box mr={4}>
-                {icon.metamask_icon && getMetaMaskIcon(icon.metamask_icon)}
-              </Box>
-              <Box>
-                {icon.fontawesome_icon && getIconComponent(icon.fontawesome_icon, FaIcons)}
-              </Box>
+        {iconMappings.map((icon, index) => (
+          <Box key={index} display="flex" alignItems="center" mb={4}>
+            <Box mr={4}>
+              <Text>{icon.metamask_icon}</Text>
             </Box>
-          );
-        })}
-        <Text>Static content for testing.</Text>
+            <Box>
+              <Text>{icon.fontawesome_icon}</Text>
+            </Box>
+          </Box>
+        ))}
       </Box>
     </ErrorBoundary>
   );
