@@ -25,6 +25,7 @@ const IconGrid = () => {
         const filteredData = data.data.filter(icon => {
           return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
         });
+        console.log('Filtered data:', filteredData); // Log filtered data for debugging
         setIconMappings(filteredData);
         setLoading(false);
         console.log('iconMappings state after fetch:', filteredData);
