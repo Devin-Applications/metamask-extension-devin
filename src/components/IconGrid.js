@@ -6,7 +6,7 @@ const IconGrid = ({ icons }) => {
   return (
     <SimpleGrid columns={[2, null, 4]} spacing="40px">
       {icons.map((icon, index) => {
-        const imagePath = `images/icons/${icon['FontAwesome Icon Name']}`;
+        const imagePath = `${process.env.PUBLIC_URL}/images/icons/${icon.metamaskIcon}`;
         console.log("Image path:", imagePath); // Add console log statement for debugging
         console.log("Icon object:", icon); // Add console log statement for debugging
         return (
