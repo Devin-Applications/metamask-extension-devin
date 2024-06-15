@@ -41,7 +41,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, []); // Remove setIconMappings from dependency array
+  }, [iconMappings]); // Add iconMappings as a dependency to the useEffect hook
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
