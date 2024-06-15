@@ -7,7 +7,6 @@ const IconGrid = () => {
   const [selectedIcons, setSelectedIcons] = useState({});
   const [loading, setLoading] = useState(true); // Add loading state
 
-  // Fetch data from the backend and filter out null values
   useEffect(() => {
     const stagingUrl = 'https://metamask-icons-app-i5s69gci.staging.devinapps.com/api/mappings'; // Updated staging URL
     console.log('Fetching data from:', stagingUrl); // Log the URL being fetched
@@ -34,7 +33,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, []);
+  }, []); // Empty dependency array to run only once on mount
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
