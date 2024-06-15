@@ -5,15 +5,23 @@ const IconGrid = ({ icons }) => {
   console.log("Icons prop:", icons); // Add console log statement for debugging
   return (
     <SimpleGrid columns={[2, null, 4]} spacing="40px">
-      {icons.map((icon, index) => (
-        <Box key={index} textAlign="center">
-          <Image src={icon.metamaskIcon} alt={icon.name} boxSize="50px" />
-          <Text mt={2}>{icon.name}</Text>
-          <Text fontSize="sm" color="gray.500">
-            {icon.fontAwesomeIcon}
-          </Text>
-        </Box>
-      ))}
+      {icons.map((icon, index) => {
+        const imagePath = `${process.env.PUBLIC_URL}/${icon['FontAwesome Icon Name']}`;
+        console.log("Image path:", imagePath); // Add console log statement for debugging
+        console.log("Icon object:", icon); // Add console log statement for debugging
+        return (
+          <Box key={index} textAlign="center">
+            <Image src={imagePath} alt={icon['MetaMask Icon Name']} boxSize="50px" />
+            <Text mt={2}>{icon['MetaMask Icon Name']}</Text>
+            <Text fontSize="sm" color="gray.500">
+              {icon['FontAwesome Icon Name']}
+            </Text>
+            <Text fontSize="sm" color="gray.500">
+              {imagePath} {/* Display the image path for debugging */}
+            </Text>
+          </Box>
+        );
+      })}
     </SimpleGrid>
   );
 };

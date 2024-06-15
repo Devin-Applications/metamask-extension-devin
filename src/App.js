@@ -17,14 +17,24 @@ function App() {
         console.log("CSV Data:", data); // Add console log statement for debugging
         parseCsv(data, (parsedData) => {
           console.log("Parsed CSV Data:", parsedData); // Add console log statement for debugging
-          setIcons(parsedData);
+          if (Array.isArray(parsedData) && parsedData.length > 0) {
+            setIcons(parsedData);
+            console.log("Icons to be set:", parsedData); // Add console log statement for debugging
+          } else {
+            console.error("Parsed data is not an array or is empty:", parsedData);
+          }
         });
+      })
+      .catch(error => {
+        console.error("Error fetching or parsing CSV:", error);
       });
   }, []);
 
   useEffect(() => {
     console.log("Icons State:", icons); // Add console log statement for debugging
   }, [icons]);
+
+  console.log("PUBLIC_URL:", process.env.PUBLIC_URL); // Add console log statement for debugging
 
   return (
     <ChakraProvider>
