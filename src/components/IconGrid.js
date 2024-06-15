@@ -8,9 +8,14 @@ const IconGrid = ({ icons }) => {
     <SimpleGrid columns={[2, null, 4]} spacing="40px">
       {icons.map((icon, index) => {
         console.log("Icon object:", icon); // Add console log statement for debugging
+        const iconName = IconName[icon['MetaMask Icon Name']];
         return (
           <Box key={index} textAlign="center">
-            <Icon name={IconName[icon['MetaMask Icon Name']]} size="50px" />
+            {iconName ? (
+              <Icon name={iconName} size="50px" />
+            ) : (
+              <Text mt={2} color="red">Icon not found</Text>
+            )}
             <Text mt={2}>{icon['MetaMask Icon Name']}</Text>
             <Text fontSize="sm" color="gray.500">
               {icon['FontAwesome Icon Name']}
