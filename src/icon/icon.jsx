@@ -3,13 +3,12 @@ import classnames from 'classnames';
 
 import { IconColor, Display } from '../design-system/design-system';
 
-import { Box, BoxProps } from '../box';
-import type { PolymorphicRef } from '../box';
+import { Box } from '../box';
 
-import { IconSize, IconProps, IconComponent } from './icon.types';
+import { IconSize } from './icon.types';
 
-export const Icon: IconComponent = React.forwardRef(
-  <C extends React.ElementType = 'span'>(
+export const Icon = React.forwardRef(
+  (
     {
       name,
       size = IconSize.Md,
@@ -17,8 +16,8 @@ export const Icon: IconComponent = React.forwardRef(
       className = '',
       style,
       ...props
-    }: IconProps<C>,
-    ref?: PolymorphicRef<C>,
+    },
+    ref,
   ) => (
     <Box
       className={classnames(className, 'mm-icon', `mm-icon--size-${size}`)}
@@ -36,7 +35,7 @@ export const Icon: IconComponent = React.forwardRef(
         WebkitMaskImage: `url('/images/icons/${String(name)}.svg')`,
         ...style,
       }}
-      {...(props as BoxProps<C>)}
+      {...props}
     />
   ),
 );
