@@ -4,10 +4,7 @@ import { memoize } from 'lodash';
 
 import { BREAKPOINTS } from '../../../helpers/constants/design-system';
 
-import type {
-  BoxComponent,
-  BoxProps,
-  PolymorphicRef,
+import {
   StyleDeclarationType,
   StylePropValueType,
   ClassNamesObject,
@@ -16,8 +13,8 @@ import type {
 const BASE_CLASS_NAME = 'mm-box';
 
 function isValidSize(
-  styleProp: StyleDeclarationType,
-  value: StylePropValueType,
+  styleProp,
+  value,
 ) {
   // Only margin types allow 'auto'
   return (
@@ -34,7 +31,7 @@ function isValidSize(
   );
 }
 
-function isValidString(type: StyleDeclarationType, value: StylePropValueType) {
+function isValidString(type, value) {
   return typeof type === 'string' && typeof value === 'string';
 }
 
@@ -52,16 +49,16 @@ function isValidString(type: StyleDeclarationType, value: StylePropValueType) {
 
 const generateClassNames = memoize(
   (
-    styleDeclaration: StyleDeclarationType,
-    value: StylePropValueType,
-    validatorFn: typeof isValidString | typeof isValidSize,
+    styleDeclaration,
+    value,
+    validatorFn,
   ) => {
     // if value does not exist return empty object for classnames library
     // Accepts 0 as a valid value
     if (!value && typeof value !== 'number') {
       return {};
     }
-    const classNamesObject: ClassNamesObject = {};
+    const classNamesObject = {};
     // if value is an array with single item e.g. marginTop={[1]}
     const singleArrayItemProp =
       Array.isArray(value) && value.length === 1 ? value[0] : undefined;
@@ -133,8 +130,8 @@ const generateClassNames = memoize(
   (styleDeclaration, value) => `${styleDeclaration}${value}`,
 );
 
-export const Box: BoxComponent = React.forwardRef(
-  <C extends React.ElementType = 'div'>(
+export const Box = React.forwardRef(
+  (
     {
       as,
       padding,
@@ -172,8 +169,8 @@ export const Box: BoxComponent = React.forwardRef(
       backgroundColor,
       color,
       ...props
-    }: BoxProps<C>,
-    ref?: PolymorphicRef<C>,
+    },
+    ref,
   ) => {
     const Component = as || 'div';
     const boxClassName = classnames(
