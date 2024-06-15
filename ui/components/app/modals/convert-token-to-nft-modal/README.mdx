@@ -1,0 +1,36 @@
+# Convert Token to NFT Modal
+
+This component is used to convert a token to an NFT within the MetaMask extension.
+
+## Props
+
+- `hideModal` (function, required): Function to hide the modal.
+- `tokenAddress` (string, optional): The address of the token to be converted to an NFT.
+
+## Usage
+
+```jsx
+import React from 'react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import ConvertTokenToNFTModal from './convert-token-to-nft-modal';
+
+const mockStore = configureStore([]);
+const store = mockStore({
+  metamask: {
+    nfts: [],
+  },
+});
+
+const App = () => (
+  <Provider store={store}>
+    <ConvertTokenToNFTModal hideModal={() => {}} tokenAddress="0x1234567890abcdef" />
+  </Provider>
+);
+
+export default App;
+```
+
+## Description
+
+The `ConvertTokenToNFTModal` component displays a modal that allows users to convert a token to an NFT. It uses Redux for state management and React Router for navigation. The modal provides options to either ignore the token or show the import NFTs modal based on whether the token is already added as an NFT.
