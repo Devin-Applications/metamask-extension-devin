@@ -27,9 +27,12 @@ const IconGrid = () => {
         const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         setIconMappings(filteredData); // Set state with filtered data
-        console.log('iconMappings state after setState:', filteredData); // Log state after setState
+        console.log('iconMappings state immediately after setState:', filteredData); // Log state immediately after setState
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
+        setTimeout(() => {
+          console.log('iconMappings state in next render cycle:', iconMappings); // Log state in next render cycle
+        }, 0);
       })
       .catch(error => {
         console.error('Error fetching icon mappings:', error);
@@ -97,6 +100,8 @@ const IconGrid = () => {
       <SimpleGrid columns={[2, null, 4]} spacing="40px">
         {finalIconMappings.map((icon, index) => {
           console.log('Processing icon:', icon); // Log each icon being processed
+          console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
+          console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
           return (
             icon.fontawesome_icon && icon.metamask_icon ? (
               <Box key={index} textAlign="center">
