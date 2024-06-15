@@ -2,6 +2,9 @@ import React from 'react';
 import { Box, SimpleGrid, Text } from '@chakra-ui/react';
 import { Icon, IconName } from '../icon';
 
+console.log("Imported Icon:", Icon); // Add console log statement for debugging
+console.log("Imported IconName:", IconName); // Add console log statement for debugging
+
 const IconGrid = ({ icons }) => {
   console.log("Icons prop:", icons); // Add console log statement for debugging
   return (
