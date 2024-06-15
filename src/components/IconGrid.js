@@ -27,21 +27,23 @@ const IconGrid = () => {
         const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
-        setIconMappings(prevState => {
-          const isEqual = (arr1, arr2) => {
-            if (arr1.length !== arr2.length) return false;
-            for (let i = 0; i < arr1.length; i++) {
-              if (JSON.stringify(arr1[i]) !== JSON.stringify(arr2[i])) return false;
-            }
-            return true;
-          };
+        if (filteredData.length > 0) {
+          setIconMappings(prevState => {
+            const isEqual = (arr1, arr2) => {
+              if (arr1.length !== arr2.length) return false;
+              for (let i = 0; i < arr1.length; i++) {
+                if (JSON.stringify(arr1[i]) !== JSON.stringify(arr2[i])) return false;
+              }
+              return true;
+            };
 
-          if (!isEqual(filteredData, prevState)) {
-            console.log('Updating iconMappings state:', filteredData); // Log state update
-            return filteredData;
-          }
-          return prevState;
-        });
+            if (!isEqual(filteredData, prevState)) {
+              console.log('Updating iconMappings state:', filteredData); // Log state update
+              return filteredData;
+            }
+            return prevState;
+          });
+        }
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
       })
