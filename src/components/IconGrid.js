@@ -27,15 +27,20 @@ const IconGrid = () => {
         const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
-        if (JSON.stringify(filteredData) !== JSON.stringify(iconMappings)) {
+        const isEqual = (arr1, arr2) => {
+          if (arr1.length !== arr2.length) return false;
+          for (let i = 0; i < arr1.length; i++) {
+            if (JSON.stringify(arr1[i]) !== JSON.stringify(arr2[i])) return false;
+          }
+          return true;
+        };
+
+        if (filteredData.length > 0 && !isEqual(filteredData, iconMappings)) {
           setIconMappings(filteredData); // Set state with filtered data
           console.log('iconMappings state immediately after setState:', filteredData); // Log state immediately after setState
         }
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
-        setTimeout(() => {
-          console.log('iconMappings state in next render cycle:', iconMappings); // Log state in next render cycle
-        }, 0);
       })
       .catch(error => {
         console.error('Error fetching icon mappings:', error);
@@ -49,9 +54,9 @@ const IconGrid = () => {
       console.error('Null iconName encountered'); // Log error for null iconName
       return null; // Return null if iconName is null
     }
-    const iconComponent = FaIcons[iconName] || FaIcons.FaQuestion;
+    const iconComponent = FaIcons[iconName];
     console.log('Returned icon component:', iconComponent); // Log returned icon component for debugging
-    return iconComponent;
+    return iconComponent || null; // Return null if iconComponent is not found
   };
 
   const handleSelectChange = (id, value) => {
