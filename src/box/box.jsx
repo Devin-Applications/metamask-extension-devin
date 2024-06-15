@@ -2,12 +2,12 @@ import React from 'react';
 import classnames from 'classnames';
 import { memoize } from 'lodash';
 
-import { BREAKPOINTS } from '../../../helpers/constants/design-system';
+import { BREAKPOINTS } from '../design-system/design-system';
 
 import {
-  StyleDeclarationType,
-  StylePropValueType,
-  ClassNamesObject,
+  // StyleDeclarationType,
+  // StylePropValueType,
+  // ClassNamesObject,
 } from './box.types';
 
 const BASE_CLASS_NAME = 'mm-box';
