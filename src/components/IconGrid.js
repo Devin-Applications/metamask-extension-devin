@@ -27,14 +27,16 @@ const IconGrid = () => {
           console.log('iconMappings state set:', filteredData); // Log after setting state
         } else {
           console.warn('No valid icon mappings found'); // Log warning if no valid data
+          setIconMappings([]); // Ensure state is set to an empty array if no valid data
         }
         setLoading(false); // Set loading to false after data is set
+        console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
       })
       .catch(error => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, []);
+  }, [iconMappings]);
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
@@ -58,6 +60,7 @@ const IconGrid = () => {
     const selectedIcon = selectedIcons[id];
     if (selectedIcon) {
       console.log('Selected icon for save:', selectedIcon); // Log selected icon for debugging
+      console.log('iconMappings state before save:', iconMappings); // Log state before save
       fetch(`https://metamask-icons-app-i5s69gci.staging.devinapps.com/api/mappings/${id}`, {
         method: 'PUT',
         headers: {
@@ -75,6 +78,7 @@ const IconGrid = () => {
             console.log('Updated state:', updatedState); // Log updated state for debugging
             return updatedState;
           });
+          console.log('iconMappings state after save:', iconMappings); // Log state after save
         })
         .catch(error => console.error('Error updating icon mapping:', error));
     }
@@ -86,6 +90,7 @@ const IconGrid = () => {
 
   // Final safeguard to ensure no null values are processed
   const finalIconMappings = iconMappings.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+  console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
     <Box p={4}>
