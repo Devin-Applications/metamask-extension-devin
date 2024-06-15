@@ -23,7 +23,7 @@ const IconGrid = () => {
         // Log data before filtering
         console.log('Data before filtering:', data.data);
         const filteredData = data.data.filter(icon => {
-          return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
+          return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '' && icon.fontawesome_icon !== null && icon.metamask_icon !== null;
         });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         setIconMappings(filteredData);
