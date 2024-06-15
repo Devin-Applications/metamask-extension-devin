@@ -134,145 +134,119 @@ const TextColor = {
   transparent: 'transparent',
 };
 
-export enum IconColor {
-  iconDefault = 'icon-default',
-  iconAlternative = 'icon-alternative',
-  iconMuted = 'icon-muted',
-  overlayInverse = 'overlay-inverse',
-  primaryDefault = 'primary-default',
-  primaryInverse = 'primary-inverse',
-  errorDefault = 'error-default',
-  errorInverse = 'error-inverse',
-  successDefault = 'success-default',
-  successInverse = 'success-inverse',
-  warningDefault = 'warning-default',
-  warningInverse = 'warning-inverse',
-  infoDefault = 'info-default',
-  infoInverse = 'info-inverse',
-  inherit = 'inherit',
-  goerli = 'goerli',
-  sepolia = 'sepolia',
-  lineaGoerli = 'linea-goerli',
-  lineaGoerliInverse = 'linea-goerli-inverse',
-  lineaSepolia = 'linea-sepolia',
-  lineaSepoliaInverse = 'linea-sepolia-inverse',
-  lineaMainnet = 'linea-mainnet',
-  lineaMainnetInverse = 'linea-mainnet-inverse',
-  goerliInverse = 'goerli-inverse',
-  sepoliaInverse = 'sepolia-inverse',
-  transparent = 'transparent',
-}
+export const IconColor = {
+  iconDefault: 'icon-default',
+  iconAlternative: 'icon-alternative',
+  iconMuted: 'icon-muted',
+  overlayInverse: 'overlay-inverse',
+  primaryDefault: 'primary-default',
+  primaryInverse: 'primary-inverse',
+  errorDefault: 'error-default',
+  errorInverse: 'error-inverse',
+  successDefault: 'success-default',
+  successInverse: 'success-inverse',
+  warningDefault: 'warning-default',
+  warningInverse: 'warning-inverse',
+  infoDefault: 'info-default',
+  infoInverse: 'info-inverse',
+  inherit: 'inherit',
+  goerli: 'goerli',
+  sepolia: 'sepolia',
+  lineaGoerli: 'linea-goerli',
+  lineaGoerliInverse: 'linea-goerli-inverse',
+  lineaSepolia: 'linea-sepolia',
+  lineaSepoliaInverse: 'linea-sepolia-inverse',
+  lineaMainnet: 'linea-mainnet',
+  lineaMainnetInverse: 'linea-mainnet-inverse',
+  goerliInverse: 'goerli-inverse',
+  sepoliaInverse: 'sepolia-inverse',
+  transparent: 'transparent',
+};
 
-export enum TypographyVariant {
-  H1 = 'h1',
-  H2 = 'h2',
-  H3 = 'h3',
-  H4 = 'h4',
-  H5 = 'h5',
-  H6 = 'h6',
-  H7 = 'h7',
-  H8 = 'h8',
-  H9 = 'h9',
-  paragraph = 'p',
-  span = 'span',
-}
+export const TypographyVariant = {
+  H1: 'h1',
+  H2: 'h2',
+  H3: 'h3',
+  H4: 'h4',
+  H5: 'h5',
+  H6: 'h6',
+  H7: 'h7',
+  H8: 'h8',
+  H9: 'h9',
+  paragraph: 'p',
+  span: 'span',
+};
 
-export enum TextVariant {
-  displayMd = 'display-md',
-  headingLg = 'heading-lg',
-  headingMd = 'heading-md',
-  headingSm = 'heading-sm',
-  bodyLgMedium = 'body-lg-medium',
-  bodyMd = 'body-md',
-  bodyMdMedium = 'body-md-medium',
-  bodyMdBold = 'body-md-bold',
-  bodySm = 'body-sm',
-  bodySmMedium = 'body-sm-medium',
-  bodySmBold = 'body-sm-bold',
-  bodyXs = 'body-xs',
-  bodyXsMedium = 'body-xs-medium',
-  inherit = 'inherit',
-}
+export const TextVariant = {
+  displayMd: 'display-md',
+  headingLg: 'heading-lg',
+  headingMd: 'heading-md',
+  headingSm: 'heading-sm',
+  bodyLgMedium: 'body-lg-medium',
+  bodyMd: 'body-md',
+  bodyMdMedium: 'body-md-medium',
+  bodyMdBold: 'body-md-bold',
+  bodySm: 'body-sm',
+  bodySmMedium: 'body-sm-medium',
+  bodySmBold: 'body-sm-bold',
+  bodyXs: 'body-xs',
+  bodyXsMedium: 'body-xs-medium',
+  inherit: 'inherit',
+};
 
-export enum Size {
-  XXS = 'xxs',
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl',
-  inherit = 'inherit', // Used for Text, Icon, and Button components to inherit the parent elements font-size
-  auto = 'auto',
-}
+export const Size = {
+  XXS: 'xxs',
+  XS: 'xs',
+  SM: 'sm',
+  MD: 'md',
+  LG: 'lg',
+  XL: 'xl',
+  inherit: 'inherit', // Used for Text, Icon, and Button components to inherit the parent elements font-size
+  auto: 'auto',
+};
 
-export enum BorderStyle {
-  dashed = 'dashed',
-  solid = 'solid',
-  dotted = 'dotted',
-  double = 'double',
-  none = 'none',
-}
+export const BorderStyle = {
+  dashed: 'dashed',
+  solid: 'solid',
+  dotted: 'dotted',
+  double: 'double',
+  none: 'none',
+};
 
-export enum BorderRadius {
-  /**
-   * 2px
-   */
-  XS = 'xs',
-  /**
-   * 4px
-   */
-  SM = 'sm',
-  /**
-   * 6px
-   */
-  MD = 'md',
-  /**
-   * 8px
-   */
-  LG = 'lg',
-  /**
-   * 12px
-   */
-  XL = 'xl',
-  /**
-   * 0
-   */
-  none = 'none',
-  /**
-   * 9999px
-   */
-  pill = 'pill',
-  /**
-   * 50%
-   */
-  full = 'full',
-}
+export const BorderRadius = {
+  XS: 'xs', // 2px
+  SM: 'sm', // 4px
+  MD: 'md', // 6px
+  LG: 'lg', // 8px
+  XL: 'xl', // 12px
+  none: 'none', // 0
+  pill: 'pill', // 9999px
+  full: 'full', // 50%
+};
 
-// NOTE: The name of this enum is plural due to the name of property in css is `align-items`,
-// which is for aligning all items not one
-export enum AlignItems {
-  flexStart = 'flex-start',
-  flexEnd = 'flex-end',
-  center = 'center',
-  baseline = 'baseline',
-  stretch = 'stretch',
-}
+export const AlignItems = {
+  flexStart: 'flex-start',
+  flexEnd: 'flex-end',
+  center: 'center',
+  baseline: 'baseline',
+  stretch: 'stretch',
+};
 
-export enum JustifyContent {
-  flexStart = 'flex-start',
-  flexEnd = 'flex-end',
-  center = 'center',
-  spaceAround = 'space-around',
-  spaceBetween = 'space-between',
-  spaceEvenly = 'space-evenly',
-}
+export const JustifyContent = {
+  flexStart: 'flex-start',
+  flexEnd: 'flex-end',
+  center: 'center',
+  spaceAround: 'space-around',
+  spaceBetween: 'space-between',
+  spaceEvenly: 'space-evenly',
+};
 
-export enum FlexDirection {
-  Row = 'row',
-  RowReverse = 'row-reverse',
-  Column = 'column',
-  ColumnReverse = 'column-reverse',
-}
+export const FlexDirection = {
+  Row: 'row',
+  RowReverse: 'row-reverse',
+  Column: 'column',
+  ColumnReverse: 'column-reverse',
+};
 
 /**
  * @deprecated `FLEX_DIRECTION` const has been deprecated in favor of the `FlexDirection` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -287,11 +261,11 @@ export const FLEX_DIRECTION = {
   COLUMN_REVERSE: 'column-reverse',
 };
 
-export enum FlexWrap {
-  Wrap = 'wrap',
-  WrapReverse = 'wrap-reverse',
-  NoWrap = 'nowrap',
-}
+export const FlexWrap = {
+  Wrap: 'wrap',
+  WrapReverse: 'wrap-reverse',
+  NoWrap: 'nowrap',
+};
 
 /**
  * @deprecated `FLEX_WRAP` const has been deprecated in favor of the `FlexWrap` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -305,17 +279,17 @@ export const FLEX_WRAP = {
   NO_WRAP: 'nowrap',
 };
 
-export enum Display {
-  Block = 'block',
-  Flex = 'flex',
-  Grid = 'grid',
-  InlineBlock = 'inline-block',
-  Inline = 'inline',
-  InlineFlex = 'inline-flex',
-  InlineGrid = 'inline-grid',
-  ListItem = 'list-item',
-  None = 'none',
-}
+export const Display = {
+  Block: 'block',
+  Flex: 'flex',
+  Grid: 'grid',
+  InlineBlock: 'inline-block',
+  Inline: 'inline',
+  InlineFlex: 'inline-flex',
+  InlineGrid: 'inline-grid',
+  ListItem: 'list-item',
+  None: 'none',
+};
 
 /**
  * @deprecated `DISPLAY` const has been deprecated in favor of the `Display` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -370,39 +344,39 @@ export const FRACTIONS = {
   ELEVEN_TWELFTHS: '11/12',
 };
 
-export enum BlockSize {
-  Zero = '0',
-  Half = '1/2',
-  OneThird = '1/3',
-  TwoThirds = '2/3',
-  OneFourth = '1/4',
-  TwoFourths = '2/4',
-  ThreeFourths = '3/4',
-  OneFifth = '1/5',
-  TwoFifths = '2/5',
-  ThreeFifths = '3/5',
-  FourFifths = '4/5',
-  OneSixth = '1/6',
-  TwoSixths = '2/6',
-  ThreeSixths = '3/6',
-  FourSixths = '4/6',
-  FiveSixths = '5/6',
-  OneTwelfth = '1/12',
-  TwoTwelfths = '2/12',
-  ThreeTwelfths = '3/12',
-  FourTwelfths = '4/12',
-  FiveTwelfths = '5/12',
-  SixTwelfths = '6/12',
-  SevenTwelfths = '7/12',
-  EightTwelfths = '8/12',
-  NineTwelfths = '9/12',
-  TenTwelfths = '10/12',
-  ElevenTwelfths = '11/12',
-  Screen = 'screen',
-  Max = 'max',
-  Min = 'min',
-  Full = 'full',
-}
+export const BlockSize = {
+  Zero: '0',
+  Half: '1/2',
+  OneThird: '1/3',
+  TwoThirds: '2/3',
+  OneFourth: '1/4',
+  TwoFourths: '2/4',
+  ThreeFourths: '3/4',
+  OneFifth: '1/5',
+  TwoFifths: '2/5',
+  ThreeFifths: '3/5',
+  FourFifths: '4/5',
+  OneSixth: '1/6',
+  TwoSixths: '2/6',
+  ThreeSixths: '3/6',
+  FourSixths: '4/6',
+  FiveSixths: '5/6',
+  OneTwelfth: '1/12',
+  TwoTwelfths: '2/12',
+  ThreeTwelfths: '3/12',
+  FourTwelfths: '4/12',
+  FiveTwelfths: '5/12',
+  SixTwelfths: '6/12',
+  SevenTwelfths: '7/12',
+  EightTwelfths: '8/12',
+  NineTwelfths: '9/12',
+  TenTwelfths: '10/12',
+  ElevenTwelfths: '11/12',
+  Screen: 'screen',
+  Max: 'max',
+  Min: 'min',
+  Full: 'full',
+};
 
 /**
  * @deprecated `BLOCK_SIZES` const has been deprecated in favor of the `BlockSize` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -418,14 +392,14 @@ export const BLOCK_SIZES = {
   FULL: 'full',
 };
 
-export enum TextAlign {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right',
-  Justify = 'justify',
-  End = 'end',
-  Start = 'start',
-}
+export const TextAlign = {
+  Left: 'left',
+  Center: 'center',
+  Right: 'right',
+  Justify: 'justify',
+  End: 'end',
+  Start: 'start',
+};
 
 /**
  * @deprecated `TEXT_ALIGN` const has been deprecated in favor of the `TextAlign` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -441,14 +415,11 @@ export const TEXT_ALIGN = {
   START: 'start',
 };
 
-export enum TextTransform {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  Uppercase = 'uppercase',
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  Lowercase = 'lowercase',
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  Capitalize = 'capitalize',
-}
+export const TextTransform = {
+  Uppercase: 'uppercase',
+  Lowercase: 'lowercase',
+  Capitalize: 'capitalize',
+};
 
 /**
  * @deprecated `TEXT_TRANSFORM` const has been deprecated in favor of the `TextTransform` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -461,11 +432,11 @@ export const TEXT_TRANSFORM = {
   CAPITALIZE: 'capitalize',
 };
 
-export enum FontWeight {
-  Bold = 'bold',
-  Medium = 'medium',
-  Normal = 'normal',
-}
+export const FontWeight = {
+  Bold: 'bold',
+  Medium: 'medium',
+  Normal: 'normal',
+};
 
 /**
  * @deprecated `FONT_WEIGHT` const has been deprecated in favor of the `FontWeight` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -478,11 +449,11 @@ export const FONT_WEIGHT = {
   NORMAL: 'normal',
 };
 
-export enum OverflowWrap {
-  BreakWord = 'break-word',
-  Anywhere = 'anywhere',
-  Normal = 'normal',
-}
+export const OverflowWrap = {
+  BreakWord: 'break-word',
+  Anywhere: 'anywhere',
+  Normal: 'normal',
+};
 
 /**
  * @deprecated `OVERFLOW_WRAP` const has been deprecated in favor of the `OverflowWrap` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -495,10 +466,10 @@ export const OVERFLOW_WRAP = {
   NORMAL: 'normal',
 };
 
-export enum FontStyle {
-  Italic = 'italic',
-  Normal = 'normal',
-}
+export const FontStyle = {
+  Italic: 'italic',
+  Normal: 'normal',
+};
 
 /**
  * @deprecated `FONT_STYLE` const has been deprecated in favor of the `FontStyle` enum which can still be imported from `ui/helpers/constants/design-system.ts`
@@ -510,12 +481,12 @@ export const FONT_STYLE = {
   NORMAL: 'normal',
 };
 
-export enum Severity {
-  Danger = 'danger',
-  Warning = 'warning',
-  Info = 'info',
-  Success = 'success',
-}
+export const Severity = {
+  Danger: 'danger',
+  Warning: 'warning',
+  Info: 'info',
+  Success: 'success',
+};
 
 /**
  * @deprecated `SEVERITIES` const has been deprecated in favor of the `Severity` enum which can still be imported from `ui/helpers/constants/design-system.ts`
