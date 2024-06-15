@@ -90,7 +90,7 @@ const IconGrid = () => {
 
   // Render the icon grid with safeguards for null values
   console.log('iconMappings state before final filter:', iconMappings); // Log state before final filter
-  const finalIconMappings = iconMappings;
+  const finalIconMappings = iconMappings.filter(icon => icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '');
   console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
@@ -101,27 +101,25 @@ const IconGrid = () => {
           console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
           console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
           return (
-            icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '' ? (
-              <Box key={index} textAlign="center">
-                {icon.fontawesome_icon && React.createElement(getIconComponent(icon.fontawesome_icon))}
-                <Text mt={2}>{icon.metamask_icon}</Text>
-                <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
-                <Select
-                  placeholder="Select icon"
-                  onChange={(e) => handleSelectChange(icon.id, e.target.value)}
-                  value={selectedIcons[icon.id] || icon.fontawesome_icon}
-                >
-                  {Object.keys(FaIcons).map((iconName, idx) => (
-                    <option key={idx} value={iconName}>
-                      {iconName}
-                    </option>
-                  ))}
-                </Select>
-                <Button mt={2} onClick={() => handleSave(icon.id)}>
-                  Save
-                </Button>
-              </Box>
-            ) : null
+            <Box key={index} textAlign="center">
+              {icon.fontawesome_icon && React.createElement(getIconComponent(icon.fontawesome_icon))}
+              <Text mt={2}>{icon.metamask_icon}</Text>
+              <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
+              <Select
+                placeholder="Select icon"
+                onChange={(e) => handleSelectChange(icon.id, e.target.value)}
+                value={selectedIcons[icon.id] || icon.fontawesome_icon}
+              >
+                {Object.keys(FaIcons).map((iconName, idx) => (
+                  <option key={idx} value={iconName}>
+                    {iconName}
+                  </option>
+                ))}
+              </Select>
+              <Button mt={2} onClick={() => handleSave(icon.id)}>
+                Save
+              </Button>
+            </Box>
           );
         })}
       </SimpleGrid>
