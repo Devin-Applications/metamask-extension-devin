@@ -24,7 +24,6 @@ const IconGrid = () => {
         // Log data before filtering
         console.log('Data before filtering:', data.data);
         // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
-        // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
         const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
