@@ -18,8 +18,14 @@ function App() {
         parseCsv(data, (parsedData) => {
           console.log("Parsed CSV Data:", parsedData); // Add console log statement for debugging
           if (Array.isArray(parsedData) && parsedData.length > 0) {
-            setIcons(parsedData);
-            console.log("Icons to be set:", parsedData); // Add console log statement for debugging
+            // Correct the icon paths before setting the state
+            const correctedData = parsedData.map(icon => ({
+              ...icon,
+              'MetaMask Icon Name': icon['MetaMask Icon Name'].replace('images/icons/', ''),
+              'FontAwesome Icon Name': icon['FontAwesome Icon Name'].replace('images/icons/', '')
+            }));
+            setIcons(correctedData);
+            console.log("Icons to be set:", correctedData); // Add console log statement for debugging
           } else {
             console.error("Parsed data is not an array or is empty:", parsedData);
           }
