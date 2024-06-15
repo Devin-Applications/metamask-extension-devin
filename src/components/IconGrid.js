@@ -24,21 +24,24 @@ const IconGrid = () => {
         // Log data before filtering
         console.log('Data before filtering:', data.data);
         // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
-        const filteredData = data.data.filter(icon => icon.fontawesome_icon !== null && icon.metamask_icon !== null);
+        const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
-        const isEqual = (arr1, arr2) => {
-          if (arr1.length !== arr2.length) return false;
-          for (let i = 0; i < arr1.length; i++) {
-            if (JSON.stringify(arr1[i]) !== JSON.stringify(arr2[i])) return false;
-          }
-          return true;
-        };
+        setIconMappings(prevState => {
+          const isEqual = (arr1, arr2) => {
+            if (arr1.length !== arr2.length) return false;
+            for (let i = 0; i < arr1.length; i++) {
+              if (JSON.stringify(arr1[i]) !== JSON.stringify(arr2[i])) return false;
+            }
+            return true;
+          };
 
-        if (filteredData.length > 0 && !isEqual(filteredData, iconMappings)) {
-          setIconMappings(filteredData); // Set state with filtered data
-          console.log('iconMappings state immediately after setState:', filteredData); // Log state immediately after setState
-        }
+          if (!isEqual(filteredData, prevState)) {
+            console.log('Updating iconMappings state:', filteredData); // Log state update
+            return filteredData;
+          }
+          return prevState;
+        });
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
       })
@@ -100,7 +103,7 @@ const IconGrid = () => {
 
   // Render the icon grid with safeguards for null values
   console.log('iconMappings state before final filter:', iconMappings); // Log state before final filter
-  const finalIconMappings = iconMappings.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+  const finalIconMappings = iconMappings;
   console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
