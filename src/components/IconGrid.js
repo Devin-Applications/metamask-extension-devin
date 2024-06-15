@@ -91,7 +91,7 @@ const IconGrid = () => {
 
   // Render the icon grid with safeguards for null values
   console.log('iconMappings state before rendering:', iconMappings); // Log state before rendering
-  const finalIconMappings = iconMappings; // Use the state directly without additional filtering
+  const finalIconMappings = iconMappings.filter(icon => icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== ''); // Apply filtering before rendering
   console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
