@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../../../../store/store';
 import testData from '../../../../../.storybook/test-data';
 import GasTiming from './gas-timing.component';
+import { within, fireEvent } from '@storybook/testing-library';
 
 const createStore = () => {
   return configureStore({
@@ -48,3 +49,9 @@ type Story = StoryObj<typeof GasTiming>;
 export const DefaultStory: Story = {};
 
 DefaultStory.storyName = 'Default';
+
+DefaultStory.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await fireEvent.change(canvas.getByLabelText('Max Fee Per Gas'), { target: { value: 100 } });
+  await fireEvent.change(canvas.getByLabelText('Max Priority Fee Per Gas'), { target: { value: 10 } });
+};
