@@ -29,6 +29,7 @@ const IconGrid = () => {
         });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         if (JSON.stringify(filteredData) !== JSON.stringify(prevIconMappingsRef.current)) {
+          console.log('Setting iconMappings state with filtered data:', filteredData); // Log before setting state
           setIconMappings(filteredData);
           prevIconMappingsRef.current = filteredData;
           console.log('iconMappings state immediately after set:', filteredData); // Log state immediately after set
