@@ -104,6 +104,7 @@ const IconGrid = () => {
     <Box p={4}>
       <SimpleGrid columns={[2, null, 4]} spacing="40px">
         { /* Add a check before rendering each icon to skip rendering if the iconName is null */ }
+        { /* Add a check before rendering each icon to skip rendering if the iconName is null */ }
         {finalIconMappings.map((icon, index) => {
           try {
             console.log('Processing icon:', icon); // Log each icon being processed
