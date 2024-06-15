@@ -4,12 +4,6 @@ import { memoize } from 'lodash';
 
 import { BREAKPOINTS } from '../design-system/design-system';
 
-import {
-  // StyleDeclarationType,
-  // StylePropValueType,
-  // ClassNamesObject,
-} from './box.types';
-
 const BASE_CLASS_NAME = 'mm-box';
 
 function isValidSize(
