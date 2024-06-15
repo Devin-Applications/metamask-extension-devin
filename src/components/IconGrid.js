@@ -144,7 +144,11 @@ const IconGrid = () => {
             console.error('Error rendering icon:', error); // Log any rendering errors
             console.log('Error details:', error.message); // Log error message
             console.log('Error stack:', error.stack); // Log error stack trace
-            return null; // Skip rendering if an error occurs
+            return (
+              <Box key={index} textAlign="center">
+                <Text color="red">Error rendering icon</Text>
+              </Box>
+            ); // Display error message in UI
           }
         })}
       </SimpleGrid>
