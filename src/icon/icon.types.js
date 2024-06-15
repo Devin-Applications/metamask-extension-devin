@@ -1,12 +1,5 @@
 import React from 'react';
 
-import { IconColor } from '../design-system/design-system';
-
-import type {
-  StyleUtilityProps,
-  PolymorphicComponentPropWithRef,
-} from '../box';
-
 export const IconSize = {
   Xs: 'xs',
   Sm: 'sm',
@@ -184,37 +177,22 @@ export const IconName = {
 };
 
 // TODO: Convert to a `type` in a future major version.
-export interface IconStyleUtilityProps extends StyleUtilityProps {
-  /**
-   * The name of the icon to display. Use the IconName object
-   * Search for an icon: https://metamask.github.io/metamask-storybook/?path=/story/components-componentlibrary-icon--default-story
-   */
-  name: string;
-  /**
-   * The size of the Icon.
-   * Possible values could be IconSize.Xs (12px), IconSize.Sm (16px), IconSize.Md (20px), IconSize.Lg (24px), IconSize.Xl (32px), IconSize.Inherit (inherits font-size).
-   * Default value is IconSize.Md (20px).
-   */
-  size?: string;
-  /**
-   * The color of the icon.
-   * Defaults to IconColor.inherit.
-   */
-  color?: IconColor;
-  /**
-   * An additional className to apply to the icon.
-   */
-  className?: string;
-  /**
-   * Addition style properties to apply to the icon.
-   * The Icon component uses inline styles to apply the icon's mask-image so be wary of overriding
-   */
-  style?: React.CSSProperties;
-}
+export const IconStyleUtilityProps = {
+  name: '',
+  size: '',
+  color: '',
+  className: '',
+  style: {},
+};
 
-export type IconProps<C extends React.ElementType> =
-  PolymorphicComponentPropWithRef<C, IconStyleUtilityProps>;
+export const IconProps = {
+  name: '',
+  size: '',
+  color: '',
+  className: '',
+  style: {},
+};
 
-export type IconComponent = React.ForwardRefExoticComponent<
-  IconProps<React.ElementType> & React.RefAttributes<unknown>
->;
+export const IconComponent = React.forwardRef((props, ref) => (
+  <div ref={ref} {...props} />
+));
