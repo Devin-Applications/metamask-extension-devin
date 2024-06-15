@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, SimpleGrid, Text, Select, Button } from '@chakra-ui/react';
 import * as FaIcons from 'react-icons/fa';
 
@@ -6,6 +6,7 @@ const IconGrid = () => {
   const [iconMappings, setIconMappings] = useState([]);
   const [selectedIcons, setSelectedIcons] = useState({});
   const [loading, setLoading] = useState(true); // Add loading state
+  const prevIconMappingsRef = useRef();
 
   useEffect(() => {
     const stagingUrl = 'https://metamask-icons-app-i5s69gci.staging.devinapps.com/api/mappings'; // Updated staging URL
@@ -27,8 +28,11 @@ const IconGrid = () => {
           return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '' && icon.fontawesome_icon !== null && icon.metamask_icon !== null;
         });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
-        setIconMappings(filteredData);
-        console.log('iconMappings state immediately after set:', filteredData); // Log state immediately after set
+        if (JSON.stringify(filteredData) !== JSON.stringify(prevIconMappingsRef.current)) {
+          setIconMappings(filteredData);
+          prevIconMappingsRef.current = filteredData;
+          console.log('iconMappings state immediately after set:', filteredData); // Log state immediately after set
+        }
         setLoading(false);
         console.log('iconMappings state after fetch:', filteredData);
       })
@@ -100,39 +104,44 @@ const IconGrid = () => {
       <SimpleGrid columns={[2, null, 4]} spacing="40px">
         { /* Add a check before rendering each icon to skip rendering if the iconName is null */ }
         {finalIconMappings.map((icon, index) => {
-          console.log('Processing icon:', icon); // Log each icon being processed
-          console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
-          console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
-          if (!icon.fontawesome_icon || !icon.metamask_icon || icon.fontawesome_icon.trim() === '' || icon.metamask_icon.trim() === '') {
-            console.warn('Skipping icon with null or empty values:', icon); // Log warning for null or empty values
-            return null; // Skip rendering if iconName is null or empty
+          try {
+            console.log('Processing icon:', icon); // Log each icon being processed
+            console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
+            console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
+            if (!icon.fontawesome_icon || !icon.metamask_icon || icon.fontawesome_icon.trim() === '' || icon.metamask_icon.trim() === '') {
+              console.warn('Skipping icon with null or empty values:', icon); // Log warning for null or empty values
+              return null; // Skip rendering if iconName is null or empty
+            }
+            const IconComponent = getIconComponent(icon.fontawesome_icon);
+            if (!IconComponent) {
+              console.warn('Skipping icon with invalid component:', icon); // Log warning for invalid component
+              return null; // Skip rendering if IconComponent is null
+            }
+            return (
+              <Box key={index} textAlign="center">
+                {React.createElement(IconComponent)}
+                <Text mt={2}>{icon.metamask_icon}</Text>
+                <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
+                <Select
+                  placeholder="Select icon"
+                  onChange={(e) => handleSelectChange(icon.id, e.target.value)}
+                  value={selectedIcons[icon.id] || icon.fontawesome_icon}
+                >
+                  {Object.keys(FaIcons).map((iconName, idx) => (
+                    <option key={idx} value={iconName}>
+                      {iconName}
+                    </option>
+                  ))}
+                </Select>
+                <Button mt={2} onClick={() => handleSave(icon.id)}>
+                  Save
+                </Button>
+              </Box>
+            );
+          } catch (error) {
+            console.error('Error rendering icon:', error); // Log any rendering errors
+            return null; // Skip rendering if an error occurs
           }
-          const IconComponent = getIconComponent(icon.fontawesome_icon);
-          if (!IconComponent) {
-            console.warn('Skipping icon with invalid component:', icon); // Log warning for invalid component
-            return null; // Skip rendering if IconComponent is null
-          }
-          return (
-            <Box key={index} textAlign="center">
-              {React.createElement(IconComponent)}
-              <Text mt={2}>{icon.metamask_icon}</Text>
-              <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
-              <Select
-                placeholder="Select icon"
-                onChange={(e) => handleSelectChange(icon.id, e.target.value)}
-                value={selectedIcons[icon.id] || icon.fontawesome_icon}
-              >
-                {Object.keys(FaIcons).map((iconName, idx) => (
-                  <option key={idx} value={iconName}>
-                    {iconName}
-                  </option>
-                ))}
-              </Select>
-              <Button mt={2} onClick={() => handleSave(icon.id)}>
-                Save
-              </Button>
-            </Box>
-          );
         })}
       </SimpleGrid>
     </Box>
