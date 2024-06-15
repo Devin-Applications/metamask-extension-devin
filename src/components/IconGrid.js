@@ -16,9 +16,6 @@ const IconGrid = ({ icons }) => {
             <Text fontSize="sm" color="gray.500">
               {icon['FontAwesome Icon Name']}
             </Text>
-            <Text fontSize="sm" color="gray.500">
-              {imagePath} {/* Display the image path for debugging */}
-            </Text>
           </Box>
         );
       })}
