@@ -33,22 +33,20 @@ app.get('/api/mappings', (req, res) => {
 
 // API endpoint to update icon mappings
 app.post('/api/mappings', (req, res) => {
-  const { id, metamask_icon_name, fontawesome_icon_name, image_path } = req.body;
+  const { metamask_icon_name, fontawesome_icon_name } = req.body;
   const query = `
-    INSERT INTO icon_mappings (id, metamask_icon_name, fontawesome_icon_name, image_path)
-    VALUES (?, ?, ?, ?)
-    ON CONFLICT(id) DO UPDATE SET
-      metamask_icon_name = excluded.metamask_icon_name,
-      fontawesome_icon_name = excluded.fontawesome_icon_name,
-      image_path = excluded.image_path
+    INSERT INTO icon_mappings (metamask_icon_name, fontawesome_icon_name)
+    VALUES (?, ?)
+    ON CONFLICT(metamask_icon_name) DO UPDATE SET
+      fontawesome_icon_name = excluded.fontawesome_icon_name
   `;
-  const params = [id, metamask_icon_name, fontawesome_icon_name, image_path];
+  const params = [metamask_icon_name, fontawesome_icon_name];
   db.run(query, params, function (err) {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json({ message: 'Mapping updated successfully', data: { id, metamask_icon_name, fontawesome_icon_name, image_path } });
+    res.json({ message: 'Mapping updated successfully', data: { metamask_icon_name, fontawesome_icon_name } });
   });
 });
 
