@@ -107,9 +107,14 @@ const IconGrid = () => {
             console.warn('Skipping icon with null values:', icon); // Log warning for null values
             return null; // Skip rendering if iconName is null
           }
+          const IconComponent = getIconComponent(icon.fontawesome_icon);
+          if (!IconComponent) {
+            console.warn('Skipping icon with invalid component:', icon); // Log warning for invalid component
+            return null; // Skip rendering if IconComponent is null
+          }
           return (
             <Box key={index} textAlign="center">
-              {icon.fontawesome_icon && React.createElement(getIconComponent(icon.fontawesome_icon))}
+              {React.createElement(IconComponent)}
               <Text mt={2}>{icon.metamask_icon}</Text>
               <Text fontSize="sm" color="gray.500">{icon.fontawesome_icon}</Text>
               <Select
