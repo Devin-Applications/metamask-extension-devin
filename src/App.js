@@ -15,8 +15,10 @@ function App() {
       })
       .then(data => {
         console.log("CSV Data:", data); // Add console log statement for debugging
-        parseCsv(data, setIcons);
-        console.log("Parsed Icons Data:", data);
+        parseCsv(data, (parsedData) => {
+          console.log("Parsed CSV Data:", parsedData); // Add console log statement for debugging
+          setIcons(parsedData);
+        });
       });
   }, []);
 
