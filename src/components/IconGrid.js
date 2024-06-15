@@ -28,7 +28,7 @@ const IconGrid = () => {
           return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
         });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
-        if (JSON.stringify(filteredData) !== JSON.stringify(prevIconMappingsRef.current)) {
+        if (filteredData.length > 0 && JSON.stringify(filteredData) !== JSON.stringify(prevIconMappingsRef.current)) {
           console.log('Setting iconMappings state with filtered data:', filteredData); // Log before setting state
           setIconMappings(filteredData);
           prevIconMappingsRef.current = filteredData;
@@ -41,7 +41,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, [iconMappings]); // Add iconMappings as a dependency to the useEffect hook
+  }, []); // Remove iconMappings as a dependency to prevent unnecessary re-renders
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
