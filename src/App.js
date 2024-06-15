@@ -1,6 +1,5 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import IconGrid from './components/IconGrid';
 import './App.css';
 
 function App() {
@@ -8,7 +7,7 @@ function App() {
     <ChakraProvider>
       <div className="App">
         <header className="App-header">
-          <IconGrid />
+          Hello World
         </header>
       </div>
     </ChakraProvider>
