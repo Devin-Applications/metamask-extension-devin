@@ -24,12 +24,14 @@ Please keep the following token secure, as it will be required for any future up
 
 ## User Information
 
-Requested by: [User's Name]
+Requested by: Bryce
 
 ## Additional Notes
 
 - The frontend application has experienced severe crashes that have prevented the use of browser developer tools to inspect network requests directly.
 - The `IconGrid.js` file has been edited to use static data for testing purposes, bypassing the fetch process and directly setting the `iconMappings` state with known valid data.
 - The `App.js` file was simplified to display only a static "Hello World" message for debugging purposes, indicating a deeper issue not related to the rendering of icons or the fetching of data.
+
+[This Devin run](https://staging.itsdev.in/devin/258a2cd2508a462484700dabe532035d) was requested by Bryce.
 
 Please review the changes and provide feedback. If you encounter any issues or require further changes, please let me know.
