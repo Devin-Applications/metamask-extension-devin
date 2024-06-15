@@ -24,7 +24,7 @@ const IconGrid = () => {
         // Log data before filtering
         console.log('Data before filtering:', data.data);
         // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
-        const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+        const filteredData = data.data.filter(icon => icon.fontawesome_icon !== null && icon.metamask_icon !== null);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
         const isEqual = (arr1, arr2) => {
@@ -46,7 +46,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, [iconMappings]);
+  }, []);
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
