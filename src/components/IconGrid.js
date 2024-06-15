@@ -22,6 +22,7 @@ const IconGrid = () => {
         }
         // Log data before filtering
         console.log('Data before filtering:', data.data);
+        // Enhanced filtering logic to ensure no null values are included
         const filteredData = data.data.filter(icon => {
           return icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
         });
@@ -96,10 +97,15 @@ const IconGrid = () => {
   return (
     <Box p={4}>
       <SimpleGrid columns={[2, null, 4]} spacing="40px">
+        { /* Add a check before rendering each icon to skip rendering if the iconName is null */ }
         {finalIconMappings.map((icon, index) => {
           console.log('Processing icon:', icon); // Log each icon being processed
           console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
           console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
+          if (!icon.fontawesome_icon || !icon.metamask_icon) {
+            console.warn('Skipping icon with null values:', icon); // Log warning for null values
+            return null; // Skip rendering if iconName is null
+          }
           return (
             <Box key={index} textAlign="center">
               {icon.fontawesome_icon && React.createElement(getIconComponent(icon.fontawesome_icon))}
