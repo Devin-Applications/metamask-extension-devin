@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { IconColor, Display } from '../../../helpers/constants/design-system';
+import { IconColor, Display } from '../design-system/design-system';
 
 import { Box, BoxProps } from '../box';
 import type { PolymorphicRef } from '../box';

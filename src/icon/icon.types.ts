@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconColor } from '../../../helpers/constants/design-system';
+import { IconColor } from '../design-system/design-system';
 
 import type {
   StyleUtilityProps,
@@ -217,6 +217,6 @@ export interface IconStyleUtilityProps extends StyleUtilityProps {
 export type IconProps<C extends React.ElementType> =
   PolymorphicComponentPropWithRef<C, IconStyleUtilityProps>;
 
-export type IconComponent = <C extends React.ElementType = 'span'>(
-  props: IconProps<C>,
-) => React.ReactElement | null;
+export type IconComponent = React.ForwardRefExoticComponent<
+  IconProps<React.ElementType> & React.RefAttributes<unknown>
+>;
