@@ -32,8 +32,8 @@ export const Icon: IconComponent = React.forwardRef(
          * the icon component uses mask-image instead of rendering
          * the svg directly.
          */
-        maskImage: `url('./images/icons/${String(name)}.svg')`,
-        WebkitMaskImage: `url('./images/icons/${String(name)}.svg')`,
+        maskImage: `url('/images/icons/${String(name)}.svg')`,
+        WebkitMaskImage: `url('/images/icons/${String(name)}.svg')`,
         ...style,
       }}
       {...(props as BoxProps<C>)}
