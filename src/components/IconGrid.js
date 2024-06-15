@@ -26,8 +26,11 @@ const IconGrid = () => {
         // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
         const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
-        setIconMappings(filteredData); // Set state with filtered data
-        console.log('iconMappings state immediately after setState:', filteredData); // Log state immediately after setState
+        // Only set state if fetched data is different from current state
+        if (JSON.stringify(filteredData) !== JSON.stringify(iconMappings)) {
+          setIconMappings(filteredData); // Set state with filtered data
+          console.log('iconMappings state immediately after setState:', filteredData); // Log state immediately after setState
+        }
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
         setTimeout(() => {
@@ -38,7 +41,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, []);
+  }, [iconMappings]);
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
