@@ -28,6 +28,7 @@ const IconGrid = () => {
         });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         setIconMappings(filteredData);
+        console.log('iconMappings state immediately after set:', filteredData); // Log state immediately after set
         setLoading(false);
         console.log('iconMappings state after fetch:', filteredData);
       })
@@ -35,7 +36,7 @@ const IconGrid = () => {
         console.error('Error fetching icon mappings:', error);
         setLoading(false); // Set loading to false in case of error
       });
-  }, []); // Empty dependency array to run only once on mount
+  }, []); // Remove setIconMappings from dependency array
 
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
@@ -91,7 +92,7 @@ const IconGrid = () => {
 
   // Render the icon grid with safeguards for null values
   console.log('iconMappings state before rendering:', iconMappings); // Log state before rendering
-  const finalIconMappings = iconMappings.filter(icon => icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== ''); // Apply filtering before rendering
+  const finalIconMappings = iconMappings; // Use the state directly without additional filtering
   console.log('Final icon mappings before rendering:', finalIconMappings); // Log before rendering
 
   return (
