@@ -23,8 +23,13 @@ const IconGrid = () => {
         }
         // Log data before filtering
         console.log('Data before filtering:', data.data);
-        // Filter out mappings with null fontawesome_icon or metamask_icon before setting state
-        const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+        const filteredData = data.data.filter(icon => {
+          const isValid = icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '';
+          if (!isValid) {
+            console.warn('Excluding invalid icon mapping:', icon); // Log excluded invalid icon mappings
+          }
+          return isValid;
+        });
         console.log('Filtered data:', filteredData); // Log filtered data for debugging
         // Only set state if fetched data is different from current state
         if (filteredData.length > 0) {
@@ -43,6 +48,8 @@ const IconGrid = () => {
             }
             return prevState;
           });
+        } else {
+          setIconMappings([]); // Set state to an empty array if filtered data is empty
         }
         setLoading(false); // Set loading to false after data is set
         console.log('iconMappings state after fetch:', filteredData); // Log state after fetch
@@ -56,8 +63,8 @@ const IconGrid = () => {
   const getIconComponent = (iconName) => {
     console.log('Requested icon name:', iconName); // Log requested icon name for debugging
     if (!iconName) {
-      console.error('Null iconName encountered'); // Log error for null iconName
-      return null; // Return null if iconName is null
+      console.warn('Null or undefined iconName encountered:', iconName); // Log warning for null or undefined iconName
+      return null; // Return null if iconName is null or undefined
     }
     const iconComponent = FaIcons[iconName];
     console.log('Returned icon component:', iconComponent); // Log returned icon component for debugging
@@ -96,6 +103,8 @@ const IconGrid = () => {
           console.log('iconMappings state after save:', iconMappings); // Log state after save
         })
         .catch(error => console.error('Error updating icon mapping:', error));
+    } else {
+      console.error('Selected icon is null, cannot save'); // Log error for null selectedIcon
     }
   };
 
@@ -116,7 +125,7 @@ const IconGrid = () => {
           console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
           console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
           return (
-            icon.fontawesome_icon && icon.metamask_icon ? (
+            icon.fontawesome_icon && icon.metamask_icon && icon.fontawesome_icon.trim() !== '' && icon.metamask_icon.trim() !== '' ? (
               <Box key={index} textAlign="center">
                 {icon.fontawesome_icon && React.createElement(getIconComponent(icon.fontawesome_icon))}
                 <Text mt={2}>{icon.metamask_icon}</Text>
