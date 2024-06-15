@@ -43,9 +43,13 @@ const IconGrid = () => {
         console.log('Fetched raw data:', data); // Added logging to inspect raw fetched data
         if (data && data.data) {
           console.log('Entire fetched data array:', data.data); // Added logging to inspect entire fetched data array
-          const filteredData = data.data.filter(icon => icon.fontawesome_icon && icon.metamask_icon);
+          const filteredData = data.data.filter(icon => {
+            console.log('Filtering icon:', icon); // Added logging to inspect each icon during filtering
+            return icon.fontawesome_icon && icon.metamask_icon;
+          });
           console.log('Filtered data:', filteredData); // Added logging to inspect filtered data
           setIconMappings(filteredData);
+          console.log('Icon mappings state after setting:', filteredData); // Added logging to inspect state after setting
         } else {
           console.error('Fetched data is not in expected format:', data);
         }
@@ -63,13 +67,13 @@ const IconGrid = () => {
   }
 
   const getIconComponent = (iconName, library) => {
-    if (!iconName) return null;
+    if (!iconName) return <FaIcons.FaQuestion />;
     const IconComponent = library[iconName];
     return IconComponent ? <IconComponent /> : <FaIcons.FaQuestion />;
   };
 
   const getMetaMaskIcon = (iconName) => {
-    if (!iconName) return null;
+    if (!iconName) return <img src="fallback-icon.svg" alt="Fallback Icon" />;
     const iconPath = `http://localhost:3001/images/${iconName}.svg`; // Updated URL path to the correct location of the SVG files
     return <img src={iconPath} alt={iconName} />;
   };
@@ -88,14 +92,15 @@ const IconGrid = () => {
           return (
             <Box key={index} display="flex" alignItems="center" mb={4}>
               <Box mr={4}>
-                {getMetaMaskIcon(icon.metamask_icon)}
+                {icon.metamask_icon && getMetaMaskIcon(icon.metamask_icon)}
               </Box>
               <Box>
-                {getIconComponent(icon.fontawesome_icon, FaIcons)}
+                {icon.fontawesome_icon && getIconComponent(icon.fontawesome_icon, FaIcons)}
               </Box>
             </Box>
           );
         })}
+        <Text>Static content for testing.</Text>
       </Box>
     </ErrorBoundary>
   );
