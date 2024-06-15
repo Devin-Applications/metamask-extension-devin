@@ -1,0 +1,19 @@
+.icon-box {
+  text-align: center;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.icon-text {
+  margin-top: 8px;
+  white-space: normal; /* Allow text to wrap */
+  overflow: visible; /* Allow text to overflow */
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+
+.icon-image {
+  display: block;
+  margin: 0 auto;
+}

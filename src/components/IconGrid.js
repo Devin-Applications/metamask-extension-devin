@@ -1,29 +1,44 @@
 import React from 'react';
-import { SimpleGrid, Box, Image, Text } from '@chakra-ui/react';
+import { SimpleGrid, Box, Text } from '@chakra-ui/react';
+import * as FaIcons from 'react-icons/fa'; // Import all Font Awesome icons
+import './IconGrid.css';
 
 const IconGrid = ({ icons }) => {
   return (
     <SimpleGrid columns={[2, null, 4]} spacing="40px">
       {icons.map((icon, index) => {
-        const metamaskIconUrl = `https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/${icon.metamaskIcon}.svg`;
-        const fontAwesomeIconUrl = `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/svgs/solid/${icon.fontAwesomeIcon}.svg`;
-
         console.log(`Icon ${index}:`, icon);
-        console.log(`MetaMask Icon URL: ${metamaskIconUrl}`);
-        console.log(`Font Awesome Icon URL: ${fontAwesomeIconUrl}`);
+        console.log(`MetaMask Icon Name: ${icon.metamaskIcon}`);
+        console.log(`Font Awesome Icon Name: ${icon.fontAwesomeIcon}`);
+
+        if (!icon.fontAwesomeIcon) {
+          console.error(`Font Awesome Icon is missing for MetaMask Icon: ${icon.metamaskIcon}`);
+        }
+
+        // Dynamically get the Font Awesome icon component
+        const FontAwesomeIconComponent = FaIcons[icon.fontAwesomeIcon] || FaIcons.FaQuestionCircle;
+
+        // Dynamically import the MetaMask icon component
+        let MetaMaskIconComponent;
+        try {
+          MetaMaskIconComponent = require(`./icons/${icon.metamaskIcon}`).default;
+        } catch (error) {
+          console.error(`MetaMask Icon not found: ${icon.metamaskIcon}`);
+          MetaMaskIconComponent = require('./icons/ArrowRight').default; // Default to ArrowRight if not found
+        }
 
         return (
-          <Box key={index} textAlign="center">
+          <Box key={index} className="icon-box">
             {icon.metamaskIcon && (
               <>
-                <Image src={metamaskIconUrl} alt={icon.metamaskIcon} boxSize="50px" />
-                <Text mt={2}>{icon.metamaskIcon}</Text>
+                <MetaMaskIconComponent className="icon-image" />
+                <Text mt={2} className="icon-text">{icon.metamaskIcon}</Text>
               </>
             )}
             {icon.fontAwesomeIcon && (
               <>
-                <Image src={fontAwesomeIconUrl} alt={icon.fontAwesomeIcon} boxSize="50px" />
-                <Text mt={2}>{icon.fontAwesomeIcon}</Text>
+                <FontAwesomeIconComponent className="icon-image" />
+                <Text mt={2} className="icon-text">{icon.fontAwesomeIcon}</Text>
               </>
             )}
           </Box>

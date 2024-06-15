@@ -27,7 +27,7 @@ function App() {
         <Heading as="h1" size="xl" mb={6}>
           MetaMask Icons Grid
         </Heading>
-        <IconGrid icons={icons} />
+        {icons.length > 0 ? <IconGrid icons={icons} /> : <p>Loading icons...</p>}
       </Box>
     </ChakraProvider>
   );
