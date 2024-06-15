@@ -103,9 +103,9 @@ const IconGrid = () => {
           console.log('Processing icon:', icon); // Log each icon being processed
           console.log('icon.fontawesome_icon:', icon.fontawesome_icon); // Log fontawesome_icon property
           console.log('icon.metamask_icon:', icon.metamask_icon); // Log metamask_icon property
-          if (!icon.fontawesome_icon || !icon.metamask_icon) {
-            console.warn('Skipping icon with null values:', icon); // Log warning for null values
-            return null; // Skip rendering if iconName is null
+          if (!icon.fontawesome_icon || !icon.metamask_icon || icon.fontawesome_icon.trim() === '' || icon.metamask_icon.trim() === '') {
+            console.warn('Skipping icon with null or empty values:', icon); // Log warning for null or empty values
+            return null; // Skip rendering if iconName is null or empty
           }
           const IconComponent = getIconComponent(icon.fontawesome_icon);
           if (!IconComponent) {
