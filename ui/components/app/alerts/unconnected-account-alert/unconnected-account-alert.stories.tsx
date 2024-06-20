@@ -12,12 +12,6 @@ const meta: Meta<typeof UnconnectedAccountAlert> = {
       },
     },
   },
-  argTypes: {
-    // Define the argTypes for the component props if needed
-  },
-  args: {
-    // Define the default args for the component props if needed
-  },
 };
 
 export default meta;
@@ -30,7 +24,9 @@ export const DefaultStory: Story = {
     return (
       <div>
         <button onClick={() => setShowAlert(true)}>Show Alert</button>
-        {showAlert && <UnconnectedAccountAlert />}
+        {showAlert && (
+          <UnconnectedAccountAlert />
+        )}
       </div>
     );
   },
