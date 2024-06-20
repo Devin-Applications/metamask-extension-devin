@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import UnconnectedAccountAlert from './unconnected-account-alert';
 
@@ -24,7 +24,16 @@ export default meta;
 type Story = StoryObj<typeof UnconnectedAccountAlert>;
 
 export const DefaultStory: Story = {
-  render: () => <UnconnectedAccountAlert />,
+  render: () => {
+    const [showAlert, setShowAlert] = useState(false);
+
+    return (
+      <div>
+        <button onClick={() => setShowAlert(true)}>Show Alert</button>
+        {showAlert && <UnconnectedAccountAlert />}
+      </div>
+    );
+  },
 };
 
 DefaultStory.storyName = 'Default';
