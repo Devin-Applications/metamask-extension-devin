@@ -12,24 +12,28 @@ const meta: Meta<typeof UnconnectedAccountAlert> = {
       },
     },
   },
+  argTypes: {
+    onDismiss: { action: 'dismissed' },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof UnconnectedAccountAlert>;
 
 export const DefaultStory: Story = {
-  render: () => {
+  render: (args) => {
     const [showAlert, setShowAlert] = useState(false);
 
     const handleDismiss = () => {
       setShowAlert(false);
+      args.onDismiss();
     };
 
     return (
       <div>
         <button onClick={() => setShowAlert(true)}>Show Alert</button>
         {showAlert && (
-          <UnconnectedAccountAlert />
+          <UnconnectedAccountAlert onDismiss={handleDismiss} />
         )}
       </div>
     );

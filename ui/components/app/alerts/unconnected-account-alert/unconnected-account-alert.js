@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { ALERT_STATE } from '../../../../ducks/alerts';
 import {
@@ -26,7 +27,7 @@ import { Icon, IconName, Text } from '../../../component-library';
 
 const { ERROR, LOADING } = ALERT_STATE;
 
-const UnconnectedAccountAlert = () => {
+const UnconnectedAccountAlert = ({ onDismiss }) => {
   const t = useI18nContext();
   const dispatch = useDispatch();
   const alertState = useSelector(getAlertState);
@@ -50,6 +51,9 @@ const UnconnectedAccountAlert = () => {
   const [dontShowThisAgain, setDontShowThisAgain] = useState(false);
 
   const onClose = async () => {
+    if (onDismiss) {
+      onDismiss();
+    }
     return dontShowThisAgain
       ? await dispatch(dismissAndDisableAlert())
       : dispatch(dismissAlert());
@@ -123,6 +127,10 @@ const UnconnectedAccountAlert = () => {
       />
     </Popover>
   );
+};
+
+UnconnectedAccountAlert.propTypes = {
+  onDismiss: PropTypes.func,
 };
 
 export default UnconnectedAccountAlert;
