@@ -2,6 +2,6 @@ This PR introduces the Storybook story for the UnconnectedAccountAlert component
 
 A screenshot of the Storybook UI displaying the UnconnectedAccountAlert story has been attached for reference.
 
-![Screenshot](https://api.devin.ai/attachments/61713d63-0f82-4057-8f1b-10720e6b2c6a.png)
+![Screenshot](https://api.devin.ai/attachments/01e107eb-129d-46a6-a346-f8d8e5bb7610.png)
 
 [This Devin run](https://staging.itsdev.in/devin/72741f50f9b74aae9ac1e610dae37832) was requested by Rohit.
