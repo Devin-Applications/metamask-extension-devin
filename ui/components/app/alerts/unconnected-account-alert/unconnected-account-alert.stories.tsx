@@ -21,6 +21,10 @@ export const DefaultStory: Story = {
   render: () => {
     const [showAlert, setShowAlert] = useState(false);
 
+    const handleDismiss = () => {
+      setShowAlert(false);
+    };
+
     return (
       <div>
         <button onClick={() => setShowAlert(true)}>Show Alert</button>
