@@ -24,7 +24,6 @@
   },
   "exclude": [
     // don't typecheck stories, as they don't yet pass the type checker.
-    "**/*.stories.tsx",
     "**/*.stories.ts"
   ],
   // this should match our node version in .nvmrc
