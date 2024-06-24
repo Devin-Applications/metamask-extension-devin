@@ -20,7 +20,7 @@ const meta = {
 
 export default meta;
 
-const Template = (args) => <Snackbar {...args} />;
+const Template: any = (args: any) => <Snackbar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
