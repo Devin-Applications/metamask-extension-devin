@@ -69,7 +69,6 @@ import { isHardwareKeyring } from '../../../helpers/utils/hardware';
 import FeeDetailsComponent from '../components/fee-details-component/fee-details-component';
 import { SimulationDetails } from '../components/simulation-details';
 import { fetchSwapsFeatureFlags } from '../../swaps/swaps.util';
-import { BlockaidUnavailableBannerAlert } from '../components/blockaid-unavailable-banner-alert/blockaid-unavailable-banner-alert';
 
 export default class ConfirmTransactionBase extends Component {
   static contextTypes = {
@@ -174,10 +173,11 @@ export default class ConfirmTransactionBase extends Component {
     isUserOpContractDeployError: PropTypes.bool,
     useMaxValue: PropTypes.bool,
     maxValue: PropTypes.string,
-    isSmartTransaction: PropTypes.bool,
     smartTransactionsOptInStatus: PropTypes.bool,
     currentChainSupportsSmartTransactions: PropTypes.bool,
     selectedNetworkClientId: PropTypes.string,
+    isSmartTransactionsEnabled: PropTypes.bool,
+    hasPriorityApprovalRequest: PropTypes.bool,
   };
 
   state = {
@@ -207,7 +207,10 @@ export default class ConfirmTransactionBase extends Component {
       setDefaultHomeActiveTabName,
       hexMaximumTransactionFee,
       useMaxValue,
+      hasPriorityApprovalRequest,
+      mostRecentOverviewPage,
     } = this.props;
+
     const {
       customNonceValue: prevCustomNonceValue,
       nextNonce: prevNextNonce,
@@ -215,7 +218,9 @@ export default class ConfirmTransactionBase extends Component {
       transactionStatus: prevTxStatus,
       isEthGasPriceFetched: prevIsEthGasPriceFetched,
       hexMaximumTransactionFee: prevHexMaximumTransactionFee,
+      hasPriorityApprovalRequest: prevHasPriorityApprovalRequest,
     } = prevProps;
+
     const statusUpdated = transactionStatus !== prevTxStatus;
     const txDroppedOrConfirmed =
       transactionStatus === TransactionStatus.dropped ||
@@ -266,6 +271,11 @@ export default class ConfirmTransactionBase extends Component {
       useMaxValue
     ) {
       this.updateValueToMax();
+    }
+
+    if (hasPriorityApprovalRequest && !prevHasPriorityApprovalRequest) {
+      // Redirect to home which will redirect to the priority confirmation.
+      history.push(mostRecentOverviewPage);
     }
   }
 
@@ -523,7 +533,6 @@ export default class ConfirmTransactionBase extends Component {
 
     return (
       <div className="confirm-page-container-content__details">
-        <BlockaidUnavailableBannerAlert />
         <TransactionAlerts
           txData={txData}
           setUserAcknowledgedGasMissing={() =>
@@ -716,10 +725,7 @@ export default class ConfirmTransactionBase extends Component {
       ///: BEGIN:ONLY_INCLUDE_IF(keyring-snaps)
       fromInternalAccount,
       ///: END:ONLY_INCLUDE_IF
-      isSmartTransaction,
     } = this.props;
-
-    const hideLoadingIndicator = isSmartTransaction;
 
     let loadingIndicatorMessage;
 
@@ -766,7 +772,7 @@ export default class ConfirmTransactionBase extends Component {
       () => {
         this._removeBeforeUnload();
 
-        sendTransaction(txData, hideLoadingIndicator, loadingIndicatorMessage)
+        sendTransaction(txData, false, loadingIndicatorMessage)
           .then(() => {
             if (!this._isMounted) {
               return;
@@ -825,6 +831,7 @@ export default class ConfirmTransactionBase extends Component {
       toAddress,
       showCustodianDeepLink,
       clearConfirmTransaction,
+      isSmartTransactionsEnabled,
     } = this.props;
     const { noteText } = this.state;
 
@@ -834,6 +841,10 @@ export default class ConfirmTransactionBase extends Component {
 
       if (isNoteToTraderSupported) {
         txData.metadata.note = noteText;
+      }
+
+      if (isSmartTransactionsEnabled) {
+        txData.origin += '#smartTransaction';
       }
 
       txData.metadata.custodianPublishesTransaction =
